@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — AIcyberX</title>
+  <meta name="description" content="Your AIcyberX student dashboard. View your registered workshops and manage your profile." />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body style="background:var(--bg-2)">
+
+<nav class="navbar scrolled">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.png" alt="AIcyberX" />
+        <span class="logo-text">AIcyberX</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="workshops.html" class="btn btn-ghost btn-sm">Browse Workshops</a>
+        <button class="btn btn-secondary btn-sm" id="nav-logout-btn">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container dashboard-page">
+
+  <!-- Loading state -->
+  <div id="dashboard-loading" style="text-align:center;padding:100px 0">
+    <div class="spinner" style="width:40px;height:40px;border-width:3px;margin:0 auto 20px"></div>
+    <p style="color:var(--text-muted)">Loading your dashboard...</p>
+  </div>
+
+  <!-- Dashboard content (hidden until loaded) -->
+  <div id="dashboard-content" style="display:none">
+
+    <!-- Header card -->
+    <div class="dashboard-header reveal">
+      <div class="student-avatar" id="student-avatar"></div>
+      <div style="flex:1">
+        <h1 style="font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:4px" id="student-name">Loading...</h1>
+        <p style="font-size:14px;color:var(--text-muted)" id="student-email"></p>
+        <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap">
+          <span style="font-size:12px;color:var(--cyan);background:var(--cyan-glow-2);padding:3px 10px;border-radius:100px;border:1px solid var(--border)" id="student-institution"></span>
+          <span style="font-size:12px;color:var(--text-muted)" id="student-grade"></span>
+          <span style="font-size:12px;color:var(--text-muted)" id="student-city"></span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div style="text-align:center;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 24px">
+          <div class="stat-number" id="workshops-count">0</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px">Workshops Joined</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-open-modal="edit-profile-modal" onclick="openEditModal()">✏️ Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="dashboard-tabs">
+      <button class="dash-tab active" data-tab="workshops">📅 My Workshops</button>
+      <button class="dash-tab" data-tab="profile">👤 Profile</button>
+      <button class="dash-tab" data-tab="explore">🔍 Explore</button>
+    </div>
+
+    <!-- Tab: My Workshops -->
+    <div id="tab-workshops">
+      <div id="my-workshops-grid" class="workshops-grid">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+
+    <!-- Tab: Profile -->
+    <div id="tab-profile" style="display:none">
+      <div class="card" style="max-width:600px">
+        <h3 style="font-weight:700;font-size:18px;margin-bottom:24px">Your Profile</h3>
+        <div style="display:grid;gap:16px">
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Name</span>
+            <span id="p-name" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Email</span>
+            <span id="p-email" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Phone</span>
+            <span id="p-phone" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Institution</span>
+            <span id="p-institution" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Grade / Year</span>
+            <span id="p-grade" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">City</span>
+            <span id="p-city" style="font-size:14px;color:var(--text)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start">
+            <span style="font-size:13px;color:var(--text-muted);font-weight:500">Member Since</span>
+            <span id="p-joined" style="font-size:14px;color:var(--text)"></span>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:24px" onclick="openEditModal()">✏️ Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- Tab: Explore -->
+    <div id="tab-explore" style="display:none">
+      <div style="text-align:center;padding:60px 0">
+        <div style="font-size:64px;margin-bottom:16px">🚀</div>
+        <h2 style="font-size:22px;font-weight:700;margin-bottom:12px">Explore More Workshops</h2>
+        <p style="color:var(--text-2);margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto">Discover new workshops, competitions, and learning opportunities on our workshops page.</p>
+        <a href="workshops.html" class="btn btn-primary btn-lg">Browse All Workshops</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal-overlay" id="edit-profile-modal">
+  <div class="modal">
+    <button class="modal-close" data-close-modal="edit-profile-modal">✕</button>
+    <h3 style="font-weight:700;font-size:20px;margin-bottom:24px">Edit Profile</h3>
+    <form id="edit-profile-form" style="display:flex;flex-direction:column;gap:14px">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" name="name" id="ep-name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone / WhatsApp</label>
+        <input type="tel" name="phone" id="ep-phone" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">School / College</label>
+        <input type="text" name="institution" id="ep-institution" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Grade / Year</label>
+        <input type="text" name="grade" id="ep-grade" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">City</label>
+        <input type="text" name="city" id="ep-city" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Short Bio</label>
+        <textarea name="bio" id="ep-bio" class="form-control" rows="3" placeholder="Tell us a bit about yourself..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!Auth.isLoggedIn()) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  try {
+    const { student, workshops } = await AuthAPI.getProfile();
+
+    // Update Auth storage with fresh data
+    Auth.save(Auth.getToken(), student);
+
+    // ─── Populate header ────────────────────────────
+    const initials = student.name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+    const avatar = document.getElementById('student-avatar');
+    avatar.textContent = initials;
+    avatar.style.background = `${student.avatar_color}22`;
+    avatar.style.color = student.avatar_color;
+    avatar.style.boxShadow = `0 0 20px ${student.avatar_color}40`;
+
+    document.getElementById('student-name').textContent = student.name;
+    document.getElementById('student-email').textContent = student.email;
+    document.getElementById('student-institution').textContent = student.institution || 'Institution not set';
+    document.getElementById('student-grade').textContent = student.grade || '';
+    document.getElementById('student-city').textContent = student.city ? `📍 ${student.city}` : '';
+    document.getElementById('workshops-count').textContent = workshops.length;
+
+    // ─── Profile tab ────────────────────────────────
+    document.getElementById('p-name').textContent = student.name;
+    document.getElementById('p-email').textContent = student.email;
+    document.getElementById('p-phone').textContent = student.phone || 'Not provided';
+    document.getElementById('p-institution').textContent = student.institution || 'Not provided';
+    document.getElementById('p-grade').textContent = student.grade || 'Not provided';
+    document.getElementById('p-city').textContent = student.city || 'Not provided';
+    document.getElementById('p-joined').textContent = new Date(student.created_at).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' });
+
+    // ─── Workshops tab ───────────────────────────────
+    const wGrid = document.getElementById('my-workshops-grid');
+    if (workshops.length === 0) {
+      wGrid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:60px 0">
+          <div style="font-size:56px;margin-bottom:16px">🧪</div>
+          <h3 style="font-size:20px;font-weight:700;margin-bottom:8px">No workshops yet!</h3>
+          <p style="color:var(--text-2);margin-bottom:24px">Browse and register for our free AI and Cybersecurity workshops.</p>
+          <a href="workshops.html" class="btn btn-primary">Browse Workshops</a>
+        </div>
+      `;
+    } else {
+      const catIcons = { ai:'🤖', cyber:'🛡️', competition:'🏆' };
+      wGrid.innerHTML = workshops.map(w => `
+        <div class="workshop-card">
+          <div class="workshop-card-img-wrap">
+            <div class="workshop-img-placeholder-small">${catIcons[w.category] || '📚'}</div>
+          </div>
+          <div class="workshop-card-body">
+            <div class="tag tag-${w.category === 'ai' ? 'ai' : w.category === 'cyber' ? 'cyber' : 'comp'}" style="margin-bottom:10px">${(w.category || '').toUpperCase()}</div>
+            <div class="workshop-card-title">${w.title}</div>
+            <div class="workshop-card-desc">${w.description?.slice(0,100) || ''}...</div>
+            <div style="font-size:12px;color:var(--green);margin-top:12px;font-weight:600">✅ Registered on ${new Date(w.registered_at).toLocaleDateString('en-IN')}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ─── Show dashboard ──────────────────────────────
+    document.getElementById('dashboard-loading').style.display = 'none';
+    document.getElementById('dashboard-content').style.display = 'block';
+    initScrollReveal();
+
+  } catch (err) {
+    Auth.clear();
+    window.location.href = 'login.html';
+  }
+
+  // ─── Tab switching ────────────────────────────────
+  document.querySelectorAll('.dash-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('[id^="tab-"]').forEach(c => c.style.display = 'none');
+      document.getElementById(`tab-${tab.dataset.tab}`).style.display = 'block';
+    });
+  });
+});
+
+// ─── Edit Profile Modal ─────────────────────────────────
+function openEditModal() {
+  const student = Auth.getStudent();
+  if (student) {
+    document.getElementById('ep-name').value = student.name || '';
+    document.getElementById('ep-phone').value = student.phone || '';
+    document.getElementById('ep-institution').value = student.institution || '';
+    document.getElementById('ep-grade').value = student.grade || '';
+    document.getElementById('ep-city').value = student.city || '';
+    document.getElementById('ep-bio').value = student.bio || '';
+  }
+  openModal('edit-profile-modal');
+}
+
+document.getElementById('edit-profile-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('[type="submit"]');
+  const data = Object.fromEntries(new FormData(e.target));
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Saving...';
+  try {
+    const res = await AuthAPI.updateProfile(data);
+    Auth.save(Auth.getToken(), res.student);
+    showToast('Profile updated! ✅', 'success');
+    closeModal('edit-profile-modal');
+    setTimeout(() => location.reload(), 1000);
+  } catch (err) {
+    showToast(err.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Save Changes';
+  }
+});
+</script>
+</body>
+</html>

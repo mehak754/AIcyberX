@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login / Join — AIcyberX Community</title>
+  <meta name="description" content="Join the AIcyberX student community. Create your account to register for AI and Cybersecurity workshops." />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+<!-- Navbar (minimal) -->
+<nav class="navbar scrolled">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.png" alt="AIcyberX" />
+        <span class="logo-text">AIcyberX</span>
+      </a>
+      <div style="font-size:14px;color:var(--text-muted)">
+        <a href="index.html" style="color:var(--cyan)">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Background effects -->
+<div style="position:fixed;inset:0;z-index:-1;pointer-events:none">
+  <div style="position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,119,255,0.08) 0%,transparent 70%)"></div>
+  <div style="position:absolute;bottom:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,255,0.06) 0%,transparent 70%)"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:60px 60px"></div>
+</div>
+
+<div class="auth-page">
+  <div class="auth-card" style="animation:scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both">
+
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:28px">
+      <img src="assets/logo.png" alt="AIcyberX" style="height:52px;margin:0 auto 12px;filter:drop-shadow(0 0 10px rgba(0,212,255,0.5))" />
+      <h1 style="font-family:var(--font-head);font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">AIcyberX</h1>
+      <p style="font-size:13px;color:var(--text-muted)">Learn AI. Master Cyber. Lead Tomorrow.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab" id="login-tab">🔐 Login</button>
+      <button class="auth-tab" id="register-tab">🚀 Join Free</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="form-group">
+          <label class="form-label" for="l-email">Email Address</label>
+          <input type="email" id="l-email" name="email" class="form-control" placeholder="your@email.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div style="position:relative">
+            <input type="password" id="l-password" name="password" class="form-control" placeholder="Enter your password" required autocomplete="current-password" />
+            <button type="button" data-toggle-password="#l-password" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:16px;cursor:pointer;color:var(--text-muted)">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:4px">
+          Login to Dashboard
+        </button>
+      </div>
+      <p style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:20px">
+        Don't have an account? <button type="button" id="switch-to-register" style="background:none;border:none;color:var(--cyan);font-weight:600;cursor:pointer;font-size:13px">Create one free →</button>
+      </p>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" class="hidden" style="display:none">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="form-group">
+          <label class="form-label" for="r-name">Full Name *</label>
+          <input type="text" id="r-name" name="name" class="form-control" placeholder="Your full name" required />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="form-group">
+            <label class="form-label" for="r-email">Email *</label>
+            <input type="email" id="r-email" name="email" class="form-control" placeholder="you@email.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-phone">WhatsApp Number</label>
+            <input type="tel" id="r-phone" name="phone" class="form-control" placeholder="+91..." />
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="form-group">
+            <label class="form-label" for="r-institution">School / College</label>
+            <input type="text" id="r-institution" name="institution" class="form-control" placeholder="Institution name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="r-grade">Grade / Year</label>
+            <select id="r-grade" name="grade" class="form-control">
+              <option value="">Select grade</option>
+              <option>Class 6-8</option>
+              <option>Class 9-10</option>
+              <option>Class 11-12</option>
+              <option>1st Year College</option>
+              <option>2nd Year College</option>
+              <option>3rd Year College</option>
+              <option>4th Year College</option>
+              <option>Post Graduate</option>
+              <option>Professional</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="r-city">City</label>
+          <input type="text" id="r-city" name="city" class="form-control" placeholder="Your city" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password *</label>
+          <div style="position:relative">
+            <input type="password" id="reg-password" name="password" class="form-control" placeholder="Min. 6 characters" required />
+            <button type="button" data-toggle-password="#reg-password" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:16px;cursor:pointer;color:var(--text-muted)">👁</button>
+          </div>
+          <span id="pw-strength" style="font-size:11px;font-weight:600;transition:color 0.3s"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password *</label>
+          <input type="password" name="confirm_password" class="form-control" placeholder="Repeat password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:4px">
+          🚀 Create Free Account
+        </button>
+      </div>
+      <p style="text-align:center;font-size:12px;color:var(--text-dim);margin-top:16px">
+        By joining, you agree to our Terms. This is a free community — no payment required.
+      </p>
+      <p style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:16px">
+        Already have an account? <button type="button" id="switch-to-login" style="background:none;border:none;color:var(--cyan);font-weight:600;cursor:pointer;font-size:13px">Login →</button>
+      </p>
+    </form>
+
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  // Extra tab switching for in-form buttons
+  document.getElementById('switch-to-register')?.addEventListener('click', () => {
+    document.getElementById('register-tab').click();
+  });
+  document.getElementById('switch-to-login')?.addEventListener('click', () => {
+    document.getElementById('login-tab').click();
+  });
+</script>
+</body>
+</html>

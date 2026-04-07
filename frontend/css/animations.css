@@ -1,0 +1,311 @@
+/* ============================================================
+   AIcyberX — Animations & Keyframes
+   ============================================================ */
+
+/* ─── Keyframes ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
+  50%       { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 119, 255, 0.3); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes matrix-fall {
+  0%   { transform: translateY(-100%); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20%       { transform: translate(-2px, 2px); }
+  40%       { transform: translate(-2px, -2px); }
+  60%       { transform: translate(2px, 2px); }
+  80%       { transform: translate(2px, -2px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); max-height: 100px; }
+  to   { opacity: 0; transform: translateX(100px); max-height: 0; padding: 0; margin: 0; }
+}
+
+@keyframes cyber-border {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ─── Scroll Reveal ───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.left {
+  transform: translateX(-40px);
+}
+
+.reveal.right {
+  transform: translateX(40px);
+}
+
+.reveal.scale {
+  transform: scale(0.9);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered reveal for children */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-group.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+.reveal-group.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+.reveal-group.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.25s; }
+.reveal-group.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
+.reveal-group.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
+.reveal-group.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.55s; }
+
+/* ─── Hero Animations ─────────────────────────────────────── */
+.hero-badge    { animation: fadeIn 0.6s ease 0.2s both; }
+.hero-title    { animation: fadeInUp 0.8s ease 0.4s both; }
+.hero-subtitle { animation: fadeInUp 0.8s ease 0.6s both; }
+.hero-actions  { animation: fadeInUp 0.8s ease 0.8s both; }
+.hero-stats    { animation: fadeInUp 0.8s ease 1s both; }
+
+/* ─── Floating Elements ───────────────────────────────────── */
+.float-1 { animation: float 5s ease-in-out infinite; }
+.float-2 { animation: float 6s ease-in-out 1s infinite; }
+.float-3 { animation: float 7s ease-in-out 2s infinite; }
+
+/* ─── Glow Pulse ──────────────────────────────────────────── */
+.glow-pulse { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* ─── Gradient Text Animation ─────────────────────────────── */
+.animated-gradient {
+  background: linear-gradient(270deg, #00d4ff, #0077ff, #00d4ff, #00ff88, #00d4ff);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ─── Cyber Scan Effect ───────────────────────────────────── */
+.scan-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-effect::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── Glitch Effect ───────────────────────────────────────── */
+.glitch:hover { animation: glitch 0.3s ease; }
+
+/* ─── Counter Animation ───────────────────────────────────── */
+.counter { transition: all 0.1s; }
+
+/* ─── Particle Canvas ─────────────────────────────────────── */
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Demo Cards Hover ────────────────────────────────────── */
+.demo-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.demo-card .demo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(1, 10, 20, 0.95), rgba(1, 10, 20, 0.3));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.demo-card:hover .demo-overlay { opacity: 1; }
+
+.demo-card .demo-preview {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  border-radius: var(--r-lg);
+}
+
+.demo-card:hover .demo-preview { transform: scale(1.05); }
+
+/* ─── Workshop Card Hover ─────────────────────────────────── */
+.workshop-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  transition: transform 0.5s ease;
+  background: var(--surface-2);
+}
+
+.workshop-card:hover .workshop-card-img { transform: scale(1.04); }
+
+/* ─── Timeline ────────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--blue), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 32px 24px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -5px; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+/* ─── Neon Border Effect ──────────────────────────────────── */
+.neon-border {
+  position: relative;
+  border-radius: var(--r-xl);
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue), var(--cyan));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: cyber-border 4s ease infinite;
+}
+
+/* ─── Reduction for motion sensitive ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

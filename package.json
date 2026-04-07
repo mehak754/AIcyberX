@@ -1,0 +1,14 @@
+{
+  "name": "aicyberx-website",
+  "version": "1.0.0",
+  "description": "AIcyberX Student AI & Cybersecurity Community Website",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "AIcyberX Team",
+  "license": "MIT"
+}

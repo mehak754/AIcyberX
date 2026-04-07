@@ -1,0 +1,14 @@
+{
+  "name": "aicyberx-backend",
+  "version": "1.0.0",
+  "description": "AIcyberX community website backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["aicyberx", "ai", "cybersecurity"],
+  "author": "AIcyberX Team",
+  "license": "MIT",
+  "type": "commonjs"
+}

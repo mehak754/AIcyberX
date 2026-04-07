@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workshops & Events — AIcyberX</title>
+  <meta name="description" content="Browse all AIcyberX AI and Cybersecurity workshops, events, and competitions. Free registration for students." />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.png" alt="AIcyberX" />
+        <span class="logo-text">AIcyberX</span>
+      </a>
+      <ul class="navbar-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="workshops.html" class="active">Workshops</a></li>
+        <li><a href="index.html#competition">Competition</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="btn btn-ghost btn-sm" id="nav-logout-btn" style="display:none">Logout</button>
+        <a href="dashboard.html" class="btn btn-ghost btn-sm" id="nav-dash-btn" style="display:none">Dashboard</a>
+        <a href="login.html" class="btn btn-primary btn-sm" id="nav-login-btn">Join Now</a>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html#about">About</a>
+  <a href="index.html#services">Services</a>
+  <a href="workshops.html">Workshops</a>
+  <a href="index.html#competition">Competition</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="login.html" class="btn btn-primary" style="text-align:center;margin-top:8px">Join Community</a>
+</div>
+
+<!-- Page header -->
+<div style="padding:calc(var(--nav-h) + 60px) 0 60px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,119,255,0.08) 0%,transparent 70%),var(--bg)">
+  <div class="container text-center">
+    <span class="section-badge reveal" style="margin-bottom:16px">📅 All Events</span>
+    <h1 class="section-title reveal" style="font-size:clamp(28px,5vw,52px)">Workshops & <span>Events</span></h1>
+    <p class="section-subtitle reveal" style="margin:0 auto 32px">All our workshops are free for students. Register now to secure your spot!</p>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" style="justify-content:center">
+      <button class="filter-btn active" data-filter="all">All Events</button>
+      <button class="filter-btn" data-filter="ai">🤖 AI Workshops</button>
+      <button class="filter-btn" data-filter="cyber">🛡️ Cybersecurity</button>
+      <button class="filter-btn" data-filter="competition">🏆 Competitions</button>
+    </div>
+  </div>
+</div>
+
+<!-- Workshops grid -->
+<div class="section" style="padding-top:0;background:var(--bg)">
+  <div class="container">
+    <div class="workshops-grid" id="workshops-grid">
+      <!-- Dynamic content loaded by workshops.js -->
+    </div>
+  </div>
+</div>
+
+<!-- CTA Banner -->
+<section style="padding:80px 0;background:var(--bg-2)">
+  <div class="container">
+    <div class="cta-banner text-center reveal">
+      <h2 class="section-title" style="font-size:clamp(24px,3vw,40px);margin-bottom:12px">Want Us at Your <span>School?</span></h2>
+      <p style="color:var(--text-2);margin-bottom:28px;font-size:16px;max-width:500px;margin-left:auto;margin-right:auto">We conduct customized sessions for schools and colleges. Get in touch to schedule a workshop!</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#contact" class="btn btn-primary btn-lg">Book for School</a>
+        <a href="mailto:aiCyberX60@gmail.com" class="btn btn-secondary btn-lg">Email Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer (minimal) -->
+<footer style="background:var(--bg);border-top:1px solid var(--border);padding:32px 0">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="assets/logo.png" alt="AIcyberX" style="height:28px" />
+      <span style="font-size:13px;color:var(--text-muted)">© 2024 AIcyberX. Learn AI. Master Cyber. Lead Tomorrow.</span>
+    </div>
+    <div style="display:flex;gap:16px">
+      <a href="https://instagram.com/aicyberx60" target="_blank" style="font-size:13px;color:var(--text-muted);transition:var(--transition)" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">Instagram</a>
+      <a href="index.html#contact" style="font-size:13px;color:var(--text-muted);transition:var(--transition)" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/workshops.js"></script>
+</body>
+</html>
