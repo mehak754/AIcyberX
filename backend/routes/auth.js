@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const db = require('../database');
+const router  = express.Router();
+const bcrypt  = require('bcryptjs');
+const jwt     = require('jsonwebtoken');
+const { Student, Registration, Workshop } = require('../database');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'aicyberx_secret';
 
@@ -18,23 +18,24 @@ router.post('/register', async (req, res) => {
     if (!name || !email || !password)
       return res.status(400).json({ error: 'Name, email, and password are required.' });
 
-    const existing = db.prepare('SELECT id FROM students WHERE email = ?').get(email);
+    const existing = await Student.findOne({ email: email.toLowerCase() });
     if (existing)
       return res.status(409).json({ error: 'An account with this email already exists.' });
 
     const password_hash = await bcrypt.hash(password, 12);
-    const avatarColors = ['#00d4ff', '#0077ff', '#00ff88', '#ff6b35', '#a855f7'];
-    const avatar_color = avatarColors[Math.floor(Math.random() * avatarColors.length)];
+    const avatarColors  = ['#00d4ff', '#0077ff', '#00ff88', '#ff6b35', '#a855f7'];
+    const avatar_color  = avatarColors[Math.floor(Math.random() * avatarColors.length)];
 
-    const result = db.prepare(`
-      INSERT INTO students (name, email, phone, institution, grade, city, password_hash, avatar_color)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(name, email, phone || null, institution || null, grade || null, city || null, password_hash, avatar_color);
+    const student = await Student.create({
+      name, email, phone: phone || null, institution: institution || null,
+      grade: grade || null, city: city || null, password_hash, avatar_color,
+    });
 
-    const token = generateToken(result.lastInsertRowid);
-    const student = db.prepare('SELECT id, name, email, phone, institution, grade, city, avatar_color, created_at FROM students WHERE id = ?').get(result.lastInsertRowid);
+    const token    = generateToken(student._id);
+    const safeData = student.toJSON();
+    delete safeData.password_hash;
 
-    res.status(201).json({ token, student, message: 'Welcome to AIcyberX! 🚀' });
+    res.status(201).json({ token, student: safeData, message: 'Welcome to AIcyberX! 🚀' });
   } catch (err) {
     console.error('Register error:', err);
     res.status(500).json({ error: 'Registration failed. Please try again.' });
@@ -49,7 +50,7 @@ router.post('/login', async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ error: 'Email and password are required.' });
 
-    const student = db.prepare('SELECT * FROM students WHERE email = ?').get(email);
+    const student = await Student.findOne({ email: email.toLowerCase() });
     if (!student)
       return res.status(401).json({ error: 'Invalid email or password.' });
 
@@ -58,12 +59,14 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password.' });
 
     // Update last login
-    db.prepare('UPDATE students SET last_login = CURRENT_TIMESTAMP WHERE id = ?').run(student.id);
+    student.last_login = new Date();
+    await student.save();
 
-    const token = generateToken(student.id);
-    const { password_hash, ...safeStudent } = student;
+    const token    = generateToken(student._id);
+    const safeData = student.toJSON();
+    delete safeData.password_hash;
 
-    res.json({ token, student: safeStudent, message: `Welcome back, ${student.name}!` });
+    res.json({ token, student: safeData, message: `Welcome back, ${student.name}!` });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Login failed. Please try again.' });
@@ -71,24 +74,26 @@ router.post('/login', async (req, res) => {
 });
 
 // ─── GET /api/auth/profile ─────────────────────────────────────────────────────
-router.get('/profile', require('../middleware/auth'), (req, res) => {
+router.get('/profile', require('../middleware/auth'), async (req, res) => {
   try {
-    const student = db.prepare(
-      'SELECT id, name, email, phone, institution, grade, city, avatar_color, bio, created_at, last_login FROM students WHERE id = ?'
-    ).get(req.userId);
-
+    const student = await Student.findById(req.userId).select('-password_hash');
     if (!student) return res.status(404).json({ error: 'Student not found.' });
 
-    // Get registered workshops
-    const workshops = db.prepare(`
-      SELECT w.*, r.registered_at FROM workshops w
-      JOIN registrations r ON w.id = r.workshop_id
-      WHERE r.student_id = ?
-      ORDER BY r.registered_at DESC
-    `).all(req.userId);
+    // Get registered workshops with workshop details
+    const registrations = await Registration.find({ student_id: req.userId })
+      .populate('workshop_id')
+      .sort({ registered_at: -1 });
 
-    res.json({ student, workshops });
+    const workshops = registrations
+      .filter(r => r.workshop_id) // guard against deleted workshops
+      .map(r => ({
+        ...r.workshop_id.toJSON(),
+        registered_at: r.registered_at,
+      }));
+
+    res.json({ student: student.toJSON(), workshops });
   } catch (err) {
+    console.error('Profile error:', err);
     res.status(500).json({ error: 'Failed to fetch profile.' });
   }
 });
@@ -97,17 +102,18 @@ router.get('/profile', require('../middleware/auth'), (req, res) => {
 router.put('/profile', require('../middleware/auth'), async (req, res) => {
   try {
     const { name, phone, institution, grade, city, bio } = req.body;
-    db.prepare(`
-      UPDATE students SET name=?, phone=?, institution=?, grade=?, city=?, bio=?
-      WHERE id=?
-    `).run(name, phone, institution, grade, city, bio, req.userId);
 
-    const updated = db.prepare(
-      'SELECT id, name, email, phone, institution, grade, city, avatar_color, bio FROM students WHERE id = ?'
-    ).get(req.userId);
+    const updated = await Student.findByIdAndUpdate(
+      req.userId,
+      { name, phone, institution, grade, city, bio },
+      { new: true, runValidators: true, select: '-password_hash' }
+    );
 
-    res.json({ student: updated, message: 'Profile updated successfully!' });
+    if (!updated) return res.status(404).json({ error: 'Student not found.' });
+
+    res.json({ student: updated.toJSON(), message: 'Profile updated successfully!' });
   } catch (err) {
+    console.error('Profile update error:', err);
     res.status(500).json({ error: 'Failed to update profile.' });
   }
 });

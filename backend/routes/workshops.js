@@ -1,64 +1,69 @@
 const express = require('express');
-const router = express.Router();
-const db = require('../database');
+const router  = express.Router();
+const { Workshop, Registration } = require('../database');
 const authMiddleware = require('../middleware/auth');
 
 // ─── GET /api/workshops ────────────────────────────────────────────────────────
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const { category, featured } = req.query;
-    let query = 'SELECT * FROM workshops WHERE is_active = 1';
-    const params = [];
+    const filter = { is_active: true };
 
-    if (category && category !== 'all') {
-      query += ' AND category = ?';
-      params.push(category);
-    }
-    if (featured === 'true') {
-      query += ' AND is_featured = 1';
-    }
+    if (category && category !== 'all') filter.category = category;
+    if (featured === 'true') filter.is_featured = true;
 
-    query += ' ORDER BY date ASC, created_at DESC';
-    const workshops = db.prepare(query).all(...params);
+    const workshops = await Workshop.find(filter).sort({ date: 1, createdAt: -1 });
     res.json(workshops);
   } catch (err) {
+    console.error('Workshops fetch error:', err);
     res.status(500).json({ error: 'Failed to fetch workshops.' });
   }
 });
 
 // ─── GET /api/workshops/:id ────────────────────────────────────────────────────
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const workshop = db.prepare('SELECT * FROM workshops WHERE id = ? AND is_active = 1').get(req.params.id);
+    const workshop = await Workshop.findOne({ _id: req.params.id, is_active: true });
     if (!workshop) return res.status(404).json({ error: 'Workshop not found.' });
 
     const seats_left = workshop.seats_total - workshop.seats_filled;
-    res.json({ ...workshop, seats_left });
+    res.json({ ...workshop.toJSON(), seats_left });
   } catch (err) {
+    // Handle invalid ObjectId format
+    if (err.name === 'CastError')
+      return res.status(404).json({ error: 'Workshop not found.' });
     res.status(500).json({ error: 'Failed to fetch workshop.' });
   }
 });
 
 // ─── POST /api/workshops/:id/register ─────────────────────────────────────────
-router.post('/:id/register', authMiddleware, (req, res) => {
+router.post('/:id/register', authMiddleware, async (req, res) => {
   try {
-    const workshopId = parseInt(req.params.id);
-    const studentId = req.userId;
+    const workshopId = req.params.id;
+    const studentId  = req.userId;
 
-    const workshop = db.prepare('SELECT * FROM workshops WHERE id = ? AND is_active = 1').get(workshopId);
+    const workshop = await Workshop.findOne({ _id: workshopId, is_active: true });
     if (!workshop) return res.status(404).json({ error: 'Workshop not found.' });
 
     const seats_left = workshop.seats_total - workshop.seats_filled;
-    if (seats_left <= 0) return res.status(400).json({ error: 'This workshop is fully booked.' });
+    if (seats_left <= 0)
+      return res.status(400).json({ error: 'This workshop is fully booked.' });
 
-    const existing = db.prepare('SELECT id FROM registrations WHERE student_id = ? AND workshop_id = ?').get(studentId, workshopId);
-    if (existing) return res.status(409).json({ error: 'You are already registered for this workshop!' });
+    const existing = await Registration.findOne({ student_id: studentId, workshop_id: workshopId });
+    if (existing)
+      return res.status(409).json({ error: 'You are already registered for this workshop!' });
 
-    db.prepare('INSERT INTO registrations (student_id, workshop_id) VALUES (?, ?)').run(studentId, workshopId);
-    db.prepare('UPDATE workshops SET seats_filled = seats_filled + 1 WHERE id = ?').run(workshopId);
+    await Registration.create({ student_id: studentId, workshop_id: workshopId });
+    await Workshop.findByIdAndUpdate(workshopId, { $inc: { seats_filled: 1 } });
 
     res.status(201).json({ message: `Successfully registered for "${workshop.title}"! 🎉` });
   } catch (err) {
+    if (err.name === 'CastError')
+      return res.status(404).json({ error: 'Workshop not found.' });
+    // Handle duplicate key (race condition — already registered)
+    if (err.code === 11000)
+      return res.status(409).json({ error: 'You are already registered for this workshop!' });
+    console.error('Registration error:', err);
     res.status(500).json({ error: 'Registration failed. Please try again.' });
   }
 });

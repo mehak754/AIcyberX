@@ -1,7 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const nodemailer = require('nodemailer');
-const db = require('../database');
+const { ContactMessage, CommunityJoin } = require('../database');
 
 // ─── Mailer Setup ──────────────────────────────────────────────────────────────
 const createTransporter = () => nodemailer.createTransport({
@@ -20,26 +20,29 @@ router.post('/', async (req, res) => {
     if (!name || !email || !message)
       return res.status(400).json({ error: 'Name, email, and message are required.' });
 
-    // Save to DB
-    db.prepare(`
-      INSERT INTO contact_messages (name, email, phone, school, message, type)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).run(name, email, phone || null, school || null, message, type || 'general');
+    // Save to MongoDB
+    await ContactMessage.create({
+      name, email,
+      phone:   phone   || null,
+      school:  school  || null,
+      message,
+      type:    type    || 'general',
+    });
 
-    // Send email notification
+    // Send email notification (non-fatal)
     if (process.env.EMAIL_PASS && process.env.EMAIL_PASS !== 'your_gmail_app_password_here') {
       try {
         const transporter = createTransporter();
         const typeLabels = {
-          school: '🏫 School Partnership Inquiry',
+          school:   '🏫 School Partnership Inquiry',
           workshop: '📚 Workshop Booking Request',
-          general: '💬 General Inquiry',
+          general:  '💬 General Inquiry',
         };
         const label = typeLabels[type] || '📩 New Contact Message';
 
         await transporter.sendMail({
           from: `"AIcyberX Website" <${process.env.EMAIL_USER}>`,
-          to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+          to:   process.env.EMAIL_TO || process.env.EMAIL_USER,
           subject: `${label} from ${name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #010a14; color: #e8f4ff; padding: 30px; border-radius: 12px; border: 1px solid #00d4ff33;">
@@ -52,8 +55,8 @@ router.post('/', async (req, res) => {
                 <table style="width: 100%; border-collapse: collapse;">
                   <tr><td style="padding: 8px 0; color: #6b8cae; width: 120px;">Name</td><td style="color: #e8f4ff;">${name}</td></tr>
                   <tr><td style="padding: 8px 0; color: #6b8cae;">Email</td><td style="color: #00d4ff;"><a href="mailto:${email}" style="color: #00d4ff;">${email}</a></td></tr>
-                  ${phone ? `<tr><td style="padding: 8px 0; color: #6b8cae;">Phone</td><td style="color: #e8f4ff;">${phone}</td></tr>` : ''}
-                  ${school ? `<tr><td style="padding: 8px 0; color: #6b8cae;">School/Institution</td><td style="color: #e8f4ff;">${school}</td></tr>` : ''}
+                  ${phone  ? `<tr><td style="padding: 8px 0; color: #6b8cae;">Phone</td><td style="color: #e8f4ff;">${phone}</td></tr>`  : ''}
+                  ${school ? `<tr><td style="padding: 8px 0; color: #6b8cae;">School</td><td style="color: #e8f4ff;">${school}</td></tr>` : ''}
                 </table>
               </div>
               <div style="background: #0a1628; border: 1px solid #0077ff33; border-radius: 8px; padding: 20px;">
@@ -65,10 +68,10 @@ router.post('/', async (req, res) => {
           `,
         });
 
-        // Auto-reply to sender
+        // Auto-reply
         await transporter.sendMail({
-          from: `"AIcyberX Team" <${process.env.EMAIL_USER}>`,
-          to: email,
+          from:    `"AIcyberX Team" <${process.env.EMAIL_USER}>`,
+          to:      email,
           subject: `Thanks for reaching out, ${name}! — AIcyberX`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #010a14; color: #e8f4ff; padding: 30px; border-radius: 12px; border: 1px solid #00d4ff33;">
@@ -91,7 +94,7 @@ router.post('/', async (req, res) => {
       }
     }
 
-    res.status(201).json({ message: 'Message sent successfully! We\'ll get back to you soon. 🚀' });
+    res.status(201).json({ message: "Message sent successfully! We'll get back to you soon. 🚀" });
   } catch (err) {
     console.error('Contact error:', err);
     res.status(500).json({ error: 'Failed to send message. Please try again.' });
@@ -104,10 +107,16 @@ router.post('/community', async (req, res) => {
     const { name, email, phone, city } = req.body;
     if (!name || !email) return res.status(400).json({ error: 'Name and email are required.' });
 
-    db.prepare('INSERT OR IGNORE INTO community_joins (name, email, phone, city) VALUES (?,?,?,?)').run(name, email, phone || null, city || null);
+    // Upsert — don't create duplicate entries for the same email
+    await CommunityJoin.findOneAndUpdate(
+      { email: email.toLowerCase() },
+      { name, phone: phone || null, city: city || null },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
-    res.json({ message: 'You\'ve been added to the AIcyberX community list! 🎉 Check your WhatsApp.' });
+    res.json({ message: "You've been added to the AIcyberX community list! 🎉 Check your WhatsApp." });
   } catch (err) {
+    console.error('Community join error:', err);
     res.status(500).json({ error: 'Failed to join. Please try again.' });
   }
 });

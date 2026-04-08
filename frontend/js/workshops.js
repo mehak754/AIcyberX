@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               </div>
             </div>
             <div style="display:flex;gap:12px;flex-wrap:wrap">
-              <button class="btn btn-primary btn-sm" onclick="handleRegister(${w.id})" ${seatsLeft <= 0 ? 'disabled' : ''} id="reg-btn-${w.id}">
+              <button class="btn btn-primary btn-sm" onclick="handleRegister('${w.id}')" ${seatsLeft <= 0 ? 'disabled' : ''} id="reg-btn-${w.id}">
                 ${seatsLeft <= 0 ? '🔒 Fully Booked' : '📝 Register Free'}
               </button>
               ${w.registration_link ? `<a href="${w.registration_link}" target="_blank" class="btn btn-ghost btn-sm">External Link ↗</a>` : ''}

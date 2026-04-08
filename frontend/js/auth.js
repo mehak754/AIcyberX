@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const isLogin = tab === 'login';
     loginTab?.classList.toggle('active', isLogin);
     registerTab?.classList.toggle('active', !isLogin);
-    loginForm?.classList.toggle('hidden', !isLogin);
-    registerForm?.classList.toggle('hidden', isLogin);
+    // Use display style directly — .hidden class is not defined in CSS
+    if (loginForm)    loginForm.style.display    = isLogin  ? '' : 'none';
+    if (registerForm) registerForm.style.display = !isLogin ? '' : 'none';
   }
 
   loginTab?.addEventListener('click', () => showTab('login'));
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       showToast(err.message, 'error');
       btn.disabled = false;
-      btn.innerHTML = 'Login';
+      btn.innerHTML = 'Login to Dashboard';
     }
   });
 
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       showToast(err.message, 'error');
       btn.disabled = false;
-      btn.innerHTML = 'Create Account';
+      btn.innerHTML = '🚀 Create Free Account';
     }
   });
 
