@@ -33,7 +33,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // FIXED fallback
-app.get('*', (req, res) => {
+app.use((req, res) => {
   if (!req.path.startsWith('/api')) {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
   } else {
