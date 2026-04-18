@@ -3,7 +3,7 @@
    All backend communication goes through this module
    ============================================================ */
 
-const API_BASE = 'https://aicyberx.onrender.com/api';
+const API_BASE = '/api';
 
 // ─── Request Helper ────────────────────────────────────────
 async function request(method, path, body = null, auth = false) {

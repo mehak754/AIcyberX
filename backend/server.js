@@ -2,28 +2,27 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-
+const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// ─── Middleware ────────────────────────────────────────────────────────────────
+console.log("ENV PORT:", process.env.PORT);
+// Middleware
 app.use(cors({
-  origin: true,          // reflect request origin — allows any frontend (local, Render, or static host)
+  origin: ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5000', 'http://localhost:5500', 'http://127.0.0.1:5500'],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-app.options('*', cors()); // handle pre-flight requests for all routes
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Serve frontend static files
+// Serve frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// ─── Routes ───────────────────────────────────────────────────────────────────
+// Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/workshops', require('./routes/workshops'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/gallery', require('./routes/gallery'));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -35,8 +34,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// ─── SPA Fallback ─────────────────────────────────────────────────────────────
-app.get('/{*splat}', (req, res) => {
+// FIXED fallback
+app.use((req, res) => {
   if (!req.path.startsWith('/api')) {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
   } else {
@@ -44,11 +43,7 @@ app.get('/{*splat}', (req, res) => {
   }
 });
 
-// ─── Start ────────────────────────────────────────────────────────────────────
+// Start
 app.listen(PORT, () => {
-  console.log(`\n🚀 AIcyberX server running at http://localhost:${PORT}`);
-  console.log(`📁 Frontend served from /frontend`);
-  console.log(`📡 API available at /api/*\n`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
-
-module.exports = app;
