@@ -313,7 +313,8 @@ function initCommunityForm() {
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Joining...';
 
-    try {
+    
+try {
       await ContactAPI.joinCommunity(data);
       showToast('You\'re in! 🎉 Redirecting you to the WhatsApp group...', 'success', 5000);
       
