@@ -1,719 +1,823 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-adsense-account" content="ca-pub-5064944122908903">
   <title>AIcyberX — Learn AI. Master Cyber. Lead Tomorrow.</title>
-  <meta name="description" content="AIcyberX is a student-driven community delivering hands-on AI and Cybersecurity workshops, hackathons, and real-world demos across schools and colleges." />
+  <meta name="description"
+    content="AIcyberX is a student-driven community delivering hands-on AI and Cybersecurity workshops, hackathons, and real-world demos across schools and colleges." />
   <meta property="og:title" content="AIcyberX — AI & Cyber Community" />
-  <meta property="og:description" content="Hands-on workshops, real-world demos, and student innovation in AI & Cybersecurity." />
+  <meta property="og:description"
+    content="Hands-on workshops, real-world demos, and student innovation in AI & Cybersecurity." />
   <meta property="og:image" content="/assets/logo.png" />
   <link rel="icon" href="/assets/logo.png" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/components.css" />
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
      NAVBAR
 ═══════════════════════════════════════════════════════════ -->
-<nav class="navbar" role="navigation" aria-label="Main navigation">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-logo" aria-label="AIcyberX Home">
-        <img src="assets/logo.png" alt="AIcyberX Logo" />
-        <span class="logo-text">AIcyberX</span>
-      </a>
-
-      <ul class="navbar-links" role="list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">What We Offer</a></li>
-        <li><a href="#demos">Live Demos</a></li>
-        <li><a href="workshops.html">Workshops</a></li>
-        <li><a href="#competition">Competition</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <div class="navbar-actions">
-        <button class="btn btn-ghost btn-sm" id="nav-logout-btn" style="display:none">Logout</button>
-        <a href="dashboard.html" class="btn btn-ghost btn-sm" id="nav-dash-btn" style="display:none">Dashboard</a>
-        <a href="login.html" class="btn btn-primary btn-sm" id="nav-login-btn">Join Now</a>
-      </div>
-
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href="#about">About</a>
-  <a href="#services">What We Offer</a>
-  <a href="#demos">Live Demos</a>
-  <a href="workshops.html">Workshops</a>
-  <a href="#competition">Competition</a>
-  <a href="#contact">Contact</a>
-  <a href="login.html" class="btn btn-primary" style="text-align:center;margin-top:8px">Join Community</a>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════
-     HERO SECTION
-═══════════════════════════════════════════════════════════ -->
-<section id="hero" class="hero">
-  <canvas id="particles-canvas"></canvas>
-  <div class="hero-bg-grid"></div>
-
-  <!-- Decorative glow orbs -->
-  <div class="cyber-orb cyber-orb-1"></div>
-  <div class="cyber-orb cyber-orb-2"></div>
-
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="pulse-dot"></span>
-        Student-Driven · AI & Cybersecurity Community
-      </div>
-
-      <h1 class="hero-title">
-        <span class="line-1">Experience the Future of</span>
-        <span class="line-2">AI & Cybersecurity</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Hands-on workshops, real-world demos, and student innovation.
-        Join <strong>AIcyberX</strong> — where you don't just learn technology, you <em>experience</em> it.
-        <br />Upcoming: <span id="typewriter-text" style="color:var(--cyan);font-weight:600"></span>
-        <span style="color:var(--cyan);animation:blink 1s infinite">|</span>
-      </p>
-
-      <div class="hero-actions">
-        <a href="login.html?tab=register" class="btn btn-primary btn-lg glow-pulse" id="hero-join-btn">
-          🚀 Join Community
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo" aria-label="AIcyberX Home">
+          <img src="assets/logo.png" alt="AIcyberX Logo" />
+          <span class="logo-text">AIcyberX</span>
         </a>
-        <a href="workshops.html" class="btn btn-secondary btn-lg">
-          📅 Book a Workshop
-        </a>
-      </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-counter data-target="500" data-suffix="+">500+</span>
-          <span class="hero-stat-label">Students Reached</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-counter data-target="20" data-suffix="+">20+</span>
-          <span class="hero-stat-label">Workshops Done</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-counter data-target="15" data-suffix="+">15+</span>
-          <span class="hero-stat-label">Schools Visited</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num" data-counter data-target="100" data-suffix="%">100%</span>
-          <span class="hero-stat-label">Free to Join</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;animation:fadeIn 1s ease 1.5s both">
-    <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Scroll to explore</div>
-    <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--cyan),transparent);margin:0 auto"></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     ABOUT SECTION
-═══════════════════════════════════════════════════════════ -->
-<section id="about" class="section about-section">
-  <div class="container">
-    <div class="flex-between" style="gap:60px;flex-wrap:wrap">
-
-      <div style="flex:1;min-width:280px">
-        <div class="section-header">
-          <span class="section-badge reveal">🌐 Who We Are</span>
-          <h2 class="section-title reveal">We Don't Just Teach Tech. <span>We Make You Experience It.</span></h2>
-        </div>
-        <blockquote class="about-quote reveal">
-          "We don't just teach technology — we make students experience it. From voice AI to ethical hacking, every session is designed to spark curiosity and build real skills."
-        </blockquote>
-        <p class="section-subtitle reveal" style="margin-bottom:24px">
-          AIcyberX (Artificial Intelligence & Cybersecurity eXperience) is a student-driven initiative bringing cutting-edge tech education to schools and colleges through immersive, hands-on workshops and live demonstrations.
-        </p>
-        <div class="flex gap-3 reveal" style="flex-wrap:wrap">
-          <a href="login.html?tab=register" class="btn btn-primary">Join Our Community</a>
-          <a href="#contact" class="btn btn-secondary">Book for Your School</a>
-        </div>
-      </div>
-
-      <div style="flex:1;min-width:280px">
-        <div class="about-highlights reveal-group">
-          <div class="about-highlight">
-            <div class="about-icon">🧪</div>
-            <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Hands-on Learning</h3>
-            <p style="font-size:14px;color:var(--text-2);line-height:1.7">Every workshop includes live demos, activities, and interactive challenges — no passive learning here.</p>
-          </div>
-          <div class="about-highlight">
-            <div class="about-icon">🌍</div>
-            <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Real-World Exposure</h3>
-            <p style="font-size:14px;color:var(--text-2);line-height:1.7">Simulations of actual cyber threats, live AI demos, and tools used by professionals in the industry.</p>
-          </div>
-          <div class="about-highlight">
-            <div class="about-icon">👩‍💻</div>
-            <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Student-Driven</h3>
-            <p style="font-size:14px;color:var(--text-2);line-height:1.7">Built by students, for students. We understand what makes learning exciting, relevant, and effective.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     WHAT WE OFFER
-═══════════════════════════════════════════════════════════ -->
-<section id="services" class="section services-section">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="section-badge reveal">💡 What We Offer</span>
-      <h2 class="section-title reveal">Everything You Need to <span>Start Your Tech Journey</span></h2>
-      <p class="section-subtitle reveal">From beginner-friendly AI workshops to advanced cybersecurity sessions — we cover it all.</p>
-    </div>
-
-    <div class="grid-4 reveal-group">
-      <div class="service-card">
-        <div class="service-icon-wrap cyan">🤖</div>
-        <div class="service-title">AI Workshops</div>
-        <div class="service-desc">Dive into artificial intelligence with interactive demos and hands-on activities anyone can enjoy.</div>
-        <div class="service-features">
-          <div class="service-feature">Voice AI & Speech Recognition</div>
-          <div class="service-feature">Image Generation with AI</div>
-          <div class="service-feature">Chatbots & NLP Basics</div>
-          <div class="service-feature">Machine Learning Concepts</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon-wrap blue">🛡️</div>
-        <div class="service-title">Cybersecurity Awareness</div>
-        <div class="service-desc">Learn how cyber threats work and how to protect yourself in today's digital world.</div>
-        <div class="service-features">
-          <div class="service-feature">Phishing Attack Simulations</div>
-          <div class="service-feature">Password Safety & Hashing</div>
-          <div class="service-feature">Ethical Hacking Intro</div>
-          <div class="service-feature">Privacy & Digital Safety</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon-wrap orange">🏆</div>
-        <div class="service-title">Competitions & Challenges</div>
-        <div class="service-desc">Test your skills in exciting innovation challenges with prizes, certificates, and recognition.</div>
-        <div class="service-features">
-          <div class="service-feature">Summer Tech Challenge</div>
-          <div class="service-feature">AI Creativity Contest</div>
-          <div class="service-feature">Cyber Awareness Quiz</div>
-          <div class="service-feature">School-level Hackathons</div>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon-wrap purple">🤝</div>
-        <div class="service-title">Community Learning</div>
-        <div class="service-desc">Grow alongside a vibrant peer community of students passionate about AI and cybersecurity.</div>
-        <div class="service-features">
-          <div class="service-feature">WhatsApp Learning Groups</div>
-          <div class="service-feature">Peer Mentorship</div>
-          <div class="service-feature">Resource Sharing</div>
-          <div class="service-feature">Event Updates & News</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     LIVE DEMO SHOWCASE
-═══════════════════════════════════════════════════════════ -->
-<section id="demos" class="section demos-section">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="section-badge reveal">⚡ Live Demos</span>
-      <h2 class="section-title reveal">See Technology in <span>Action</span></h2>
-      <p class="section-subtitle reveal">We don't just talk about it — we show it. Here's a glimpse of what happens in our sessions.</p>
-    </div>
-
-    <div class="demo-grid reveal-group">
-
-      <div class="demo-card">
-        <div class="demo-visual demo-visual-ai scan-effect">
-          <span class="float-1">🎙️</span>
-        </div>
-        <div class="demo-body">
-          <span class="demo-tag live">● LIVE DEMO</span>
-          <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">AI Voice Cloning</h3>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.6">Watch as AI clones a voice in real-time. Understand how voice recognition and speech synthesis work — and why it matters for security.</p>
-          <div style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
-            <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">TECH USED</div>
-            <div style="font-size:12px;color:var(--text-muted)">ElevenLabs API · OpenAI Whisper · Wave2Vec</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="demo-card">
-        <div class="demo-visual demo-visual-face scan-effect">
-          <span class="float-2">👁️</span>
-        </div>
-        <div class="demo-body">
-          <span class="demo-tag demo">🔵 DEMO</span>
-          <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">Face Detection AI</h3>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.6">Live browser-based face detection using computer vision. See how AI identifies objects, faces, and emotions in real time using your webcam.</p>
-          <div style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
-            <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">TECH USED</div>
-            <div style="font-size:12px;color:var(--text-muted)">TensorFlow.js · MediaPipe · OpenCV</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="demo-card">
-        <div class="demo-visual demo-visual-crack scan-effect">
-          <span class="float-3">🔐</span>
-        </div>
-        <div class="demo-body">
-          <span class="demo-tag sim">⚠ SIMULATION</span>
-          <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">Password Crack Simulation</h3>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.6">A safe simulation showing how weak passwords are cracked in seconds using brute force and dictionary attacks — and how to protect yourself.</p>
-          <div style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
-            <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">CONCEPTS</div>
-            <div style="font-size:12px;color:var(--text-muted)">Brute Force · Dictionary Attacks · Hashing · Salting</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     WORKSHOP HIGHLIGHTS
-═══════════════════════════════════════════════════════════ -->
-<section id="highlights" class="section highlights-section">
-  <div class="container">
-    <div class="highlights-grid">
-
-      <!-- Left: Images -->
-      <div class="highlight-images reveal left">
-        <div class="workshop-img-placeholder">
-          <img id="ws-img-main" src="" alt="Workshop in action" onerror="this.style.display='none'" />
-          <span style="font-size:64px" id="ws-img-main-fallback">🧑‍💻</span>
-          <span class="img-label">Workshop Session</span>
-        </div>
-        <div class="workshop-img-placeholder">
-          <img src="" alt="" onerror="this.style.display='none'" />
-          <span style="font-size:48px">🎯</span>
-          <span class="img-label">Interactive Demo</span>
-        </div>
-        <div class="workshop-img-placeholder">
-          <img src="" alt="" onerror="this.style.display='none'" />
-          <span style="font-size:48px">🏆</span>
-          <span class="img-label">Award Ceremony</span>
-        </div>
-      </div>
-
-      <!-- Right: Features -->
-      <div class="reveal right">
-        <div class="section-header">
-          <span class="section-badge">🎉 Workshop Experience</span>
-          <h2 class="section-title">What Happens <span>Inside Our Workshops</span></h2>
-          <p class="section-subtitle">More than just a lecture — it's an experience you'll remember.</p>
-        </div>
-
-        <div class="highlight-features">
-          <div class="highlight-feature">
-            <div class="highlight-feature-icon">⚡</div>
-            <div>
-              <div style="font-weight:700;font-size:15px;margin-bottom:4px">Interactive Sessions</div>
-              <div style="font-size:14px;color:var(--text-2);line-height:1.6">Participants get hands-on with real tools and demos — not just slides. Everyone participates.</div>
-            </div>
-          </div>
-          <div class="highlight-feature">
-            <div class="highlight-feature-icon">🎮</div>
-            <div>
-              <div style="font-weight:700;font-size:15px;margin-bottom:4px">Fun Activities & Challenges</div>
-              <div style="font-size:14px;color:var(--text-2);line-height:1.6">Team quizzes, mini-hackathons, and cyber escape rooms make learning genuinely fun.</div>
-            </div>
-          </div>
-          <div class="highlight-feature">
-            <div class="highlight-feature-icon">🎁</div>
-            <div>
-              <div style="font-weight:700;font-size:15px;margin-bottom:4px">Rewards & Goodies</div>
-              <div style="font-size:14px;color:var(--text-2);line-height:1.6">Certificates of participation, shoutouts, exclusive AIcyberX merch for top performers.</div>
-            </div>
-          </div>
-          <div class="highlight-feature">
-            <div class="highlight-feature-icon">🎭</div>
-            <div>
-              <div style="font-weight:700;font-size:15px;margin-bottom:4px">Real-life Hacking Awareness</div>
-              <div style="font-size:14px;color:var(--text-2);line-height:1.6">Live demonstrations of phishing, social engineering, and password attacks — in a safe environment.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     FEATURED WORKSHOPS
-═══════════════════════════════════════════════════════════ -->
-<section id="upcoming" class="section" style="background:var(--bg)">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="section-badge reveal">📅 Upcoming</span>
-      <h2 class="section-title reveal">Featured <span>Workshops & Events</span></h2>
-      <p class="section-subtitle reveal">Register for free — all our workshops are open to students of all levels.</p>
-    </div>
-
-    <div class="workshops-grid" id="featured-workshops">
-      <!-- Dynamically loaded from API -->
-      <div class="workshop-card"><div class="workshop-card-img-wrap skeleton" style="height:200px"></div><div class="workshop-card-body"><div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div><div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div><div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div></div></div>
-      <div class="workshop-card"><div class="workshop-card-img-wrap skeleton" style="height:200px"></div><div class="workshop-card-body"><div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div><div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div><div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div></div></div>
-      <div class="workshop-card"><div class="workshop-card-img-wrap skeleton" style="height:200px"></div><div class="workshop-card-body"><div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div><div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div><div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div></div></div>
-    </div>
-
-    <div class="text-center" style="margin-top:40px">
-      <a href="workshops.html" class="btn btn-secondary btn-lg reveal">View All Workshops →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     SUMMER COMPETITION
-═══════════════════════════════════════════════════════════ -->
-<section id="competition" class="section competition-section">
-  <div class="container">
-    <div class="competition-banner neon-border reveal">
-      <div class="comp-header">🔥 Annual Event</div>
-      <h2 class="comp-title">AIcyberX <span style="background:linear-gradient(135deg,var(--cyan),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Summer Tech Challenge</span></h2>
-      <p style="font-size:17px;color:var(--text-2);max-width:600px;margin:0 auto 32px;line-height:1.7">Our annual innovation competition where students showcase their AI creativity and cybersecurity awareness. Open to all school and college students!</p>
-
-      <div class="comp-challenges reveal-group">
-        <div class="comp-challenge">
-          <div class="comp-challenge-icon">🤖</div>
-          <div class="comp-challenge-title">AI Creativity Challenge</div>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:16px">Create something amazing with AI — art, music, stories, or inventions. Show us how AI can be a creative partner!</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <span class="tag tag-ai">Open to All Ages</span>
-            <span class="tag tag-new">Online Submission</span>
-          </div>
-        </div>
-
-        <div class="comp-challenge">
-          <div class="comp-challenge-icon">🛡️</div>
-          <div class="comp-challenge-title">Cyber Awareness Challenge</div>
-          <p style="font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:16px">Create a poster, video, or campaign spreading cybersecurity awareness in your school or community. Make it viral!</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <span class="tag tag-cyber">Schools Only</span>
-            <span class="tag tag-new">Prizes Available</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="comp-prizes reveal-group">
-        <div class="comp-prize"><span class="comp-prize-icon">🥇</span><span class="comp-prize-label">1st Prize + Certificate</span></div>
-        <div class="comp-prize"><span class="comp-prize-icon">🥈</span><span class="comp-prize-label">2nd Prize + Certificate</span></div>
-        <div class="comp-prize"><span class="comp-prize-icon">🥉</span><span class="comp-prize-label">3rd Prize + Certificate</span></div>
-        <div class="comp-prize"><span class="comp-prize-icon">📜</span><span class="comp-prize-label">All Participation Certs</span></div>
-        <div class="comp-prize"><span class="comp-prize-icon">📣</span><span class="comp-prize-label">Social Shoutout</span></div>
-      </div>
-
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-        <a href="login.html?tab=register" class="btn btn-primary btn-lg glow-pulse">🏆 Register Now</a>
-        <a href="#contact" class="btn btn-secondary btn-lg">Ask a Question</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     TESTIMONIALS & SCHOOLS
-═══════════════════════════════════════════════════════════ -->
-<section id="testimonials" class="section testimonials-section">
-  <div class="container">
-    <div class="section-header centered">
-      <span class="section-badge reveal">💬 What People Say</span>
-      <h2 class="section-title reveal">Loved by <span>Students & Schools</span></h2>
-      <p class="section-subtitle reveal">Here's what participants from our workshops and sessions have shared.</p>
-    </div>
-
-    <div class="testimonial-grid reveal-group">
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <div class="testimonial-text">The AIcyberX workshop was mind-blowing! I had no idea AI could do all this. The voice cloning demo left everyone speechless. Definitely joining their community!</div>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background:rgba(0,212,255,0.15);color:var(--cyan)">P</div>
-          <div>
-            <div class="author-name">Priya Sharma</div>
-            <div class="author-school">Class 11 Student</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <div class="testimonial-text">We hosted AIcyberX for our students and the response was incredible. They made cybersecurity engaging with real demos — students were asking questions for 30 minutes after the session!</div>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background:rgba(0,119,255,0.15);color:#66aaff">R</div>
-          <div>
-            <div class="author-name">Rajesh Kumar</div>
-            <div class="author-school">School Teacher, Maharashtra</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <div class="testimonial-text">I won the Summer Challenge and got featured on their Instagram! The experience boosted my confidence and I'm now exploring machine learning on my own. AIcyberX changed my direction.</div>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background:rgba(255,107,53,0.15);color:var(--orange)">A</div>
-          <div>
-            <div class="author-name">Aryan Patel</div>
-            <div class="author-school">Engineering Student, Gujarat</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Schools / Partners -->
-    <div class="text-center" style="margin-top:60px">
-      <p style="font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:24px">Schools & Institutions We've Reached</p>
-      <div class="schools-grid">
-        <span class="school-badge">Your School Name Here</span>
-        <span class="school-badge">Partner Institution</span>
-        <span class="school-badge">Add School Name</span>
-        <span class="school-badge">More Coming Soon</span>
-        <span class="school-badge">Join Our Network</span>
-      </div>
-      <p style="font-size:13px;color:var(--text-muted);margin-top:24px">
-        Want to be featured here? <a href="#contact" style="color:var(--cyan)">Book AIcyberX for your school →</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     WHATSAPP COMMUNITY
-═══════════════════════════════════════════════════════════ -->
-<section id="community" class="section whatsapp-section">
-  <div class="container">
-    <div class="whatsapp-card reveal">
-      <div>
-        <span style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);border-radius:100px;font-size:12px;font-weight:700;color:#25d366;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px">
-          💬 WhatsApp Community
-        </span>
-        <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">Join Our <span>Growing Community</span></h2>
-        <p style="font-size:16px;color:var(--text-2);line-height:1.7;margin-bottom:28px;max-width:480px">
-          Get instant updates on workshops, events, hackathons, and resources. Connect with 500+ students passionate about AI and cybersecurity.
-        </p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn btn-lg" style="background:#25d366;color:#000;font-weight:700" data-open-modal="whatsapp-modal">
-            💬 Join WhatsApp Group
-          </button>
-          <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
-            📸 Follow on Instagram
-          </a>
-        </div>
-      </div>
-
-      <!-- QR Code Placeholder -->
-      <div class="wa-qr-placeholder">
-        <span class="qr-icon">📱</span>
-        <span style="font-size:11px;font-weight:600;color:var(--text-muted)">WhatsApp QR Code</span>
-        <span style="font-size:10px;color:var(--text-dim)">Scan to Join</span>
-        <!-- Replace with actual QR code image: <img src="assets/images/whatsapp-qr.png" alt="WhatsApp QR" style="width:100%;height:100%;object-fit:contain;position:absolute;inset:0" /> -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     BRING TO SCHOOL CTA
-═══════════════════════════════════════════════════════════ -->
-<section id="contact" class="section cta-section">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <span class="section-badge" style="margin-bottom:20px">🏫 For Schools & Institutions</span>
-      <h2 class="section-title" style="font-size:clamp(28px,4vw,52px);margin-bottom:16px">Bring <span>AIcyberX</span> to Your School</h2>
-      <p style="font-size:18px;color:var(--text-2);max-width:600px;margin:0 auto 40px;line-height:1.7">
-        We conduct customized workshops and demo sessions for schools, colleges, and coaching institutes. Completely free for students — just fill out the form below.
-      </p>
-
-      <!-- Contact Form -->
-      <div style="max-width:700px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);padding:40px;text-align:left">
-        <form id="contact-form">
-          <div class="grid-2" style="margin-bottom:20px;gap:20px">
-            <div class="form-group">
-              <label class="form-label" for="c-name">Your Name *</label>
-              <input type="text" id="c-name" name="name" class="form-control" placeholder="Full name" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="c-email">Email Address *</label>
-              <input type="email" id="c-email" name="email" class="form-control" placeholder="your@email.com" required />
-            </div>
-          </div>
-          <div class="grid-2" style="margin-bottom:20px;gap:20px">
-            <div class="form-group">
-              <label class="form-label" for="c-phone">Phone Number</label>
-              <input type="tel" id="c-phone" name="phone" class="form-control" placeholder="+91 00000 00000" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="c-school">School / Institution</label>
-              <input type="text" id="c-school" name="school" class="form-control" placeholder="School or college name" />
-            </div>
-          </div>
-          <div class="form-group" style="margin-bottom:20px">
-            <label class="form-label" for="c-type">Inquiry Type</label>
-            <select id="c-type" name="type" class="form-control">
-              <option value="school">🏫 Book Workshop for School</option>
-              <option value="workshop">📅 Individual Workshop Registration</option>
-              <option value="general">💬 General Inquiry</option>
-            </select>
-          </div>
-          <div class="form-group" style="margin-bottom:28px">
-            <label class="form-label" for="c-message">Message *</label>
-            <textarea id="c-message" name="message" class="form-control" placeholder="Tell us about your school, number of students, preferred dates, or any questions..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full btn-lg" id="contact-submit">
-            📨 Send Message
-          </button>
-        </form>
-      </div>
-
-      <div style="display:flex;justify-content:center;gap:32px;margin-top:40px;flex-wrap:wrap">
-        <a href="mailto:aiCyberX60@gmail.com" style="color:var(--text-muted);font-size:14px;transition:var(--transition)" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">
-          📧 aiCyberX60@gmail.com
-        </a>
-        <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener" style="color:var(--text-muted);font-size:14px;transition:var(--transition)" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">
-          📸 @aicyberx60
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="assets/logo.png" alt="AIcyberX" />
-          <span style="font-family:var(--font-head);font-weight:800;font-size:20px;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AIcyberX</span>
-        </div>
-        <p class="footer-tagline">Artificial Intelligence & Cybersecurity eXperience. A student-driven initiative making tech education accessible to all.</p>
-        <p style="font-size:12px;color:var(--cyan);font-weight:600;font-style:italic">Learn AI. Master Cyber. Lead Tomorrow.</p>
-        <div class="footer-social">
-          <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener" class="social-btn" title="Instagram">📸</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">💼</a>
-          <a href="mailto:aiCyberX60@gmail.com" class="social-btn" title="Email">📧</a>
-          <a href="#" class="social-btn" title="WhatsApp" data-open-modal="whatsapp-modal">💬</a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul class="footer-links">
-          <li><a href="#about">About AIcyberX</a></li>
+        <ul class="navbar-links" role="list">
+          <li><a href="#about">About</a></li>
           <li><a href="#services">What We Offer</a></li>
           <li><a href="#demos">Live Demos</a></li>
           <li><a href="workshops.html">Workshops</a></li>
-          <li><a href="#competition">Summer Challenge</a></li>
+          <li><a href="#competition">Competition</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
 
-      <div class="footer-col">
-        <h4>Community</h4>
-        <ul class="footer-links">
-          <li><a href="login.html?tab=register">Join Free</a></li>
-          <li><a href="#community">WhatsApp Group</a></li>
-          <li><a href="https://instagram.com/aicyberx60" target="_blank">Instagram</a></li>
-          <li><a href="dashboard.html">Student Dashboard</a></li>
-        </ul>
-      </div>
+        <div class="navbar-actions">
+          <button class="btn btn-ghost btn-sm" id="nav-logout-btn" style="display:none">Logout</button>
+          <a href="dashboard.html" class="btn btn-ghost btn-sm" id="nav-dash-btn" style="display:none">Dashboard</a>
+          <a href="login.html" class="btn btn-primary btn-sm" id="nav-login-btn">Join Now</a>
+        </div>
 
-      <div class="footer-col">
-        <h4>For Schools</h4>
-        <ul class="footer-links">
-          <li><a href="#contact">Book a Workshop</a></li>
-          <li><a href="#contact">School Partnership</a></li>
-          <li><a href="mailto:aiCyberX60@gmail.com">Email Us</a></li>
-          <li><a href="#testimonials">Schools We Visited</a></li>
-        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
+  </nav>
 
-    <div class="footer-bottom">
-      <p class="footer-copyright">© 2024 AIcyberX. All rights reserved. Made with ❤️ by students, for students.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-      </div>
-    </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#services">What We Offer</a>
+    <a href="#demos">Live Demos</a>
+    <a href="workshops.html">Workshops</a>
+    <a href="#competition">Competition</a>
+    <a href="#contact">Contact</a>
+    <a href="login.html" class="btn btn-primary" style="text-align:center;margin-top:8px">Join Community</a>
   </div>
-</footer>
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-bg-grid"></div>
+
+    <!-- Decorative glow orbs -->
+    <div class="cyber-orb cyber-orb-1"></div>
+    <div class="cyber-orb cyber-orb-2"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Student-Driven · AI & Cybersecurity Community
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line-1">Experience the Future of</span>
+          <span class="line-2">AI & Cybersecurity</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Hands-on workshops, real-world demos, and student innovation.
+          Join <strong>AIcyberX</strong> — where you don't just learn technology, you <em>experience</em> it.
+          <br />Upcoming: <span id="typewriter-text" style="color:var(--cyan);font-weight:600"></span>
+          <span style="color:var(--cyan);animation:blink 1s infinite">|</span>
+        </p>
+
+        <div class="hero-actions">
+          <a href="login.html?tab=register" class="btn btn-primary btn-lg glow-pulse" id="hero-join-btn">
+            🚀 Join Community
+          </a>
+          <a href="workshops.html" class="btn btn-secondary btn-lg">
+            📅 Book a Workshop
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-counter data-target="500" data-suffix="+">100+</span>
+            <span class="hero-stat-label">Students Reached</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-counter data-target="20" data-suffix="+">10+</span>
+            <span class="hero-stat-label">Workshops Done</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-counter data-target="15" data-suffix="+">10+</span>
+            <span class="hero-stat-label">Schools Visited</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-counter data-target="100" data-suffix="%">100%</span>
+            <span class="hero-stat-label">Free to Join</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div
+      style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);text-align:center;animation:fadeIn 1s ease 1.5s both">
+      <div style="font-size:11px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">
+        Scroll to explore</div>
+      <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--cyan),transparent);margin:0 auto">
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="flex-between" style="gap:60px;flex-wrap:wrap">
+
+        <div style="flex:1;min-width:280px">
+          <div class="section-header">
+            <span class="section-badge reveal">🌐 Who We Are</span>
+            <h2 class="section-title reveal">We Don't Just Teach Tech. <span>We Make You Experience It.</span></h2>
+          </div>
+          <blockquote class="about-quote reveal">
+            "We don't just teach technology — we make students experience it. From voice AI to ethical hacking, every
+            session is designed to spark curiosity and build real skills."
+          </blockquote>
+          <p class="section-subtitle reveal" style="margin-bottom:24px">
+            AIcyberX (Artificial Intelligence & Cybersecurity eXperience) is a student-driven initiative bringing
+            cutting-edge tech education to schools and colleges through immersive, hands-on workshops and live
+            demonstrations.
+          </p>
+          <div class="flex gap-3 reveal" style="flex-wrap:wrap">
+            <a href="login.html?tab=register" class="btn btn-primary">Join Our Community</a>
+            <a href="#contact" class="btn btn-secondary">Book for Your School</a>
+          </div>
+        </div>
+
+        <div style="flex:1;min-width:280px">
+          <div class="about-highlights reveal-group">
+            <div class="about-highlight">
+              <div class="about-icon">🧪</div>
+              <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Hands-on Learning</h3>
+              <p style="font-size:14px;color:var(--text-2);line-height:1.7">Every workshop includes live demos,
+                activities, and interactive challenges — no passive learning here.</p>
+            </div>
+            <div class="about-highlight">
+              <div class="about-icon">🌍</div>
+              <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Real-World Exposure</h3>
+              <p style="font-size:14px;color:var(--text-2);line-height:1.7">Simulations of actual cyber threats, live AI
+                demos, and tools used by professionals in the industry.</p>
+            </div>
+            <div class="about-highlight">
+              <div class="about-icon">👩‍💻</div>
+              <h3 style="font-weight:700;font-size:16px;margin-bottom:8px">Student-Driven</h3>
+              <p style="font-size:14px;color:var(--text-2);line-height:1.7">Built by students, for students. We
+                understand what makes learning exciting, relevant, and effective.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     WHAT WE OFFER
+═══════════════════════════════════════════════════════════ -->
+  <section id="services" class="section services-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-badge reveal">💡 What We Offer</span>
+        <h2 class="section-title reveal">Everything You Need to <span>Start Your Tech Journey</span></h2>
+        <p class="section-subtitle reveal">From beginner-friendly AI workshops to advanced cybersecurity sessions — we
+          cover it all.</p>
+      </div>
+
+      <div class="grid-4 reveal-group">
+        <div class="service-card">
+          <div class="service-icon-wrap cyan">🤖</div>
+          <div class="service-title">AI Workshops</div>
+          <div class="service-desc">Dive into artificial intelligence with interactive demos and hands-on activities
+            anyone can enjoy.</div>
+          <div class="service-features">
+            <div class="service-feature">Voice AI & Speech Recognition</div>
+            <div class="service-feature">Image Generation with AI</div>
+            <div class="service-feature">Chatbots & NLP Basics</div>
+            <div class="service-feature">Machine Learning Concepts</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-wrap blue">🛡️</div>
+          <div class="service-title">Cybersecurity Awareness</div>
+          <div class="service-desc">Learn how cyber threats work and how to protect yourself in today's digital world.
+          </div>
+          <div class="service-features">
+            <div class="service-feature">Phishing Attack Simulations</div>
+            <div class="service-feature">Password Safety & Hashing</div>
+            <div class="service-feature">Ethical Hacking Intro</div>
+            <div class="service-feature">Privacy & Digital Safety</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-wrap orange">🏆</div>
+          <div class="service-title">Competitions & Challenges</div>
+          <div class="service-desc">Test your skills in exciting innovation challenges with prizes, certificates, and
+            recognition.</div>
+          <div class="service-features">
+            <div class="service-feature">Summer Tech Challenge</div>
+            <div class="service-feature">AI Creativity Contest</div>
+            <div class="service-feature">Cyber Awareness Quiz</div>
+            <div class="service-feature">School-level Hackathons</div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon-wrap purple">🤝</div>
+          <div class="service-title">Community Learning</div>
+          <div class="service-desc">Grow alongside a vibrant peer community of students passionate about AI and
+            cybersecurity.</div>
+          <div class="service-features">
+            <div class="service-feature">WhatsApp Learning Groups</div>
+            <div class="service-feature">Peer Mentorship</div>
+            <div class="service-feature">Resource Sharing</div>
+            <div class="service-feature">Event Updates & News</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     LIVE DEMO SHOWCASE
+═══════════════════════════════════════════════════════════ -->
+  <section id="demos" class="section demos-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-badge reveal">⚡ Live Demos</span>
+        <h2 class="section-title reveal">See Technology in <span>Action</span></h2>
+        <p class="section-subtitle reveal">We don't just talk about it — we show it. Here's a glimpse of what happens in
+          our sessions.</p>
+      </div>
+
+      <div class="demo-grid reveal-group">
+
+        <div class="demo-card">
+          <div class="demo-visual demo-visual-ai scan-effect">
+            <span class="float-1">🎙️</span>
+          </div>
+          <div class="demo-body">
+            <span class="demo-tag live">● LIVE DEMO</span>
+            <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">AI Voice Cloning</h3>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.6">Watch as AI clones a voice in real-time.
+              Understand how voice recognition and speech synthesis work — and why it matters for security.</p>
+            <div
+              style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">TECH
+                USED</div>
+              <div style="font-size:12px;color:var(--text-muted)">ElevenLabs API · OpenAI Whisper · Wave2Vec</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-visual demo-visual-face scan-effect">
+            <span class="float-2">👁️</span>
+          </div>
+          <div class="demo-body">
+            <span class="demo-tag demo">🔵 DEMO</span>
+            <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">Face Detection AI</h3>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.6">Live browser-based face detection using
+              computer vision. See how AI identifies objects, faces, and emotions in real time using your webcam.</p>
+            <div
+              style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">TECH
+                USED</div>
+              <div style="font-size:12px;color:var(--text-muted)">TensorFlow.js · MediaPipe · OpenCV</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-visual demo-visual-crack scan-effect">
+            <span class="float-3">🔐</span>
+          </div>
+          <div class="demo-body">
+            <span class="demo-tag sim">⚠ SIMULATION</span>
+            <h3 style="font-weight:700;font-size:18px;margin-bottom:8px">Password Crack Simulation</h3>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.6">A safe simulation showing how weak passwords
+              are cracked in seconds using brute force and dictionary attacks — and how to protect yourself.</p>
+            <div
+              style="margin-top:16px;padding:12px;background:var(--surface-2);border-radius:var(--r-md);border:1px solid var(--border)">
+              <div style="font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:1px;margin-bottom:6px">
+                CONCEPTS</div>
+              <div style="font-size:12px;color:var(--text-muted)">Brute Force · Dictionary Attacks · Hashing · Salting
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     WORKSHOP HIGHLIGHTS
+═══════════════════════════════════════════════════════════ -->
+  <section id="highlights" class="section highlights-section">
+    <div class="container">
+      <div class="highlights-grid">
+
+        <!-- Left: Images -->
+        <div class="highlight-images reveal left">
+          <div class="workshop-img-placeholder">
+            <img id="ws-img-main" src="" alt="Workshop in action" onerror="this.style.display='none'" />
+            <span style="font-size:64px" id="ws-img-main-fallback">🧑‍💻</span>
+            <span class="img-label">Workshop Session</span>
+          </div>
+          <div class="workshop-img-placeholder">
+            <img src="" alt="" onerror="this.style.display='none'" />
+            <span style="font-size:48px">🎯</span>
+            <span class="img-label">Interactive Demo</span>
+          </div>
+          <div class="workshop-img-placeholder">
+            <img src="" alt="" onerror="this.style.display='none'" />
+            <span style="font-size:48px">🏆</span>
+            <span class="img-label">Award Ceremony</span>
+          </div>
+        </div>
+
+        <!-- Right: Features -->
+        <div class="reveal right">
+          <div class="section-header">
+            <span class="section-badge">🎉 Workshop Experience</span>
+            <h2 class="section-title">What Happens <span>Inside Our Workshops</span></h2>
+            <p class="section-subtitle">More than just a lecture — it's an experience you'll remember.</p>
+          </div>
+
+          <div class="highlight-features">
+            <div class="highlight-feature">
+              <div class="highlight-feature-icon">⚡</div>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:4px">Interactive Sessions</div>
+                <div style="font-size:14px;color:var(--text-2);line-height:1.6">Participants get hands-on with real
+                  tools and demos — not just slides. Everyone participates.</div>
+              </div>
+            </div>
+            <div class="highlight-feature">
+              <div class="highlight-feature-icon">🎮</div>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:4px">Fun Activities & Challenges</div>
+                <div style="font-size:14px;color:var(--text-2);line-height:1.6">Team quizzes, mini-hackathons, and cyber
+                  escape rooms make learning genuinely fun.</div>
+              </div>
+            </div>
+            <div class="highlight-feature">
+              <div class="highlight-feature-icon">🎁</div>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:4px">Rewards & Goodies</div>
+                <div style="font-size:14px;color:var(--text-2);line-height:1.6">Certificates of participation,
+                  shoutouts, exclusive AIcyberX merch for top performers.</div>
+              </div>
+            </div>
+            <div class="highlight-feature">
+              <div class="highlight-feature-icon">🎭</div>
+              <div>
+                <div style="font-weight:700;font-size:15px;margin-bottom:4px">Real-life Hacking Awareness</div>
+                <div style="font-size:14px;color:var(--text-2);line-height:1.6">Live demonstrations of phishing, social
+                  engineering, and password attacks — in a safe environment.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     FEATURED WORKSHOPS
+═══════════════════════════════════════════════════════════ -->
+  <section id="upcoming" class="section" style="background:var(--bg)">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-badge reveal">📅 Upcoming</span>
+        <h2 class="section-title reveal">Featured <span>Workshops & Events</span></h2>
+        <p class="section-subtitle reveal">Register for free — all our workshops are open to students of all levels.</p>
+      </div>
+
+      <div class="workshops-grid" id="featured-workshops">
+        <!-- Dynamically loaded from API -->
+        <div class="workshop-card">
+          <div class="workshop-card-img-wrap skeleton" style="height:200px"></div>
+          <div class="workshop-card-body">
+            <div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div>
+            <div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div>
+          </div>
+        </div>
+        <div class="workshop-card">
+          <div class="workshop-card-img-wrap skeleton" style="height:200px"></div>
+          <div class="workshop-card-body">
+            <div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div>
+            <div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div>
+          </div>
+        </div>
+        <div class="workshop-card">
+          <div class="workshop-card-img-wrap skeleton" style="height:200px"></div>
+          <div class="workshop-card-body">
+            <div class="skeleton" style="height:20px;width:60%;margin-bottom:12px"></div>
+            <div class="skeleton" style="height:14px;width:90%;margin-bottom:8px"></div>
+            <div class="skeleton" style="height:36px;width:40%;margin-top:12px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:40px">
+        <a href="workshops.html" class="btn btn-secondary btn-lg reveal">View All Workshops →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     SUMMER COMPETITION
+═══════════════════════════════════════════════════════════ -->
+  <section id="competition" class="section competition-section">
+    <div class="container">
+      <div class="competition-banner neon-border reveal">
+        <div class="comp-header">🔥 Annual Event</div>
+        <h2 class="comp-title">AIcyberX <span
+            style="background:linear-gradient(135deg,var(--cyan),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Summer
+            Tech Challenge</span></h2>
+        <p style="font-size:17px;color:var(--text-2);max-width:600px;margin:0 auto 32px;line-height:1.7">Our annual
+          innovation competition where students showcase their AI creativity and cybersecurity awareness. Open to all
+          school and college students!</p>
+
+        <div class="comp-challenges reveal-group">
+          <div class="comp-challenge">
+            <div class="comp-challenge-icon">🤖</div>
+            <div class="comp-challenge-title">AI Creativity Challenge</div>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:16px">Create something amazing
+              with AI — art, music, stories, or inventions. Show us how AI can be a creative partner!</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="tag tag-ai">Open to All Ages</span>
+              <span class="tag tag-new">Online Submission</span>
+            </div>
+          </div>
+
+          <div class="comp-challenge">
+            <div class="comp-challenge-icon">🛡️</div>
+            <div class="comp-challenge-title">Cyber Awareness Challenge</div>
+            <p style="font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:16px">Create a poster, video, or
+              campaign spreading cybersecurity awareness in your school or community. Make it viral!</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="tag tag-cyber">Schools Only</span>
+              <span class="tag tag-new">Prizes Available</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-prizes reveal-group">
+          <div class="comp-prize"><span class="comp-prize-icon">🥇</span><span class="comp-prize-label">1st Prize +
+              Certificate</span></div>
+          <div class="comp-prize"><span class="comp-prize-icon">🥈</span><span class="comp-prize-label">2nd Prize +
+              Certificate</span></div>
+          <div class="comp-prize"><span class="comp-prize-icon">🥉</span><span class="comp-prize-label">3rd Prize +
+              Certificate</span></div>
+          <div class="comp-prize"><span class="comp-prize-icon">📜</span><span class="comp-prize-label">All
+              Participation Certs</span></div>
+          <div class="comp-prize"><span class="comp-prize-icon">📣</span><span class="comp-prize-label">Social
+              Shoutout</span></div>
+        </div>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="login.html?tab=register" class="btn btn-primary btn-lg glow-pulse">🏆 Register Now</a>
+          <a href="#contact" class="btn btn-secondary btn-lg">Ask a Question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     TESTIMONIALS & SCHOOLS
+═══════════════════════════════════════════════════════════ -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-badge reveal">💬 What People Say</span>
+        <h2 class="section-title reveal">Loved by <span>Students & Schools</span></h2>
+        <p class="section-subtitle reveal">Here's what participants from our workshops and sessions have shared.</p>
+      </div>
+
+      <div class="testimonial-grid reveal-group">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">The AI and Cybersecurity Awareness seminar was highly informative and engaging.
+            It helped students to understand the importance and real life applications of AI in simple and effective
+            way.
+            The session was well-organised and inspire students to explore this field further.</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:rgba(0,212,255,0.15);color:var(--cyan)">P</div>
+            <div>
+              <div class="author-name">Harmeet kaur</div>
+              <div class="author-school">School Teacher, Scholars public school(Jadla)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">We hosted AIcyberX for our students and the response was incredible. They made
+            cybersecurity engaging with real demos and the awareness session about frauds and scams and suggest the
+            precautary measures to avoid such circumstances.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:rgba(0,119,255,0.15);color:#66aaff">R</div>
+            <div>
+              <div class="author-name">Gaurav Sharma</div>
+              <div class="author-school">School Teacher, DIPS school(Nurmahal)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-text">The Aicyberx team delivered an engaging and interactive seminar covering AI and
+            cybersecurity. I learned key concepts like cyberspace and phishing, and the session sparked my curiosity to
+            explore this field further. Overall, it was a very positive experience with clear and effective
+            communication.
+            Ratings:
+            Confidence: 4.5/5
+            Information: 5/5
+            Interaction: 4/5
+            Overall appeal: 5/5
+            They have strong potential as educators, and I appreciate how easily they connected with students.</div>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:rgba(255,107,53,0.15);color:var(--orange)">A</div>
+            <div>
+              <div class="author-name">Gaurav Sharma</div>
+              <div class="author-school">Engineering Student, Gujarat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schools / Partners -->
+      <div class="text-center" style="margin-top:60px">
+        <p style="font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:24px">
+          Schools & Institutions We've Reached</p>
+        <div class="schools-grid">
+          <span class="school-badge">Your School Name Here</span>
+          <span class="school-badge">Partner Institution</span>
+          <span class="school-badge">Add School Name</span>
+          <span class="school-badge">More Coming Soon</span>
+          <span class="school-badge">Join Our Network</span>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:24px">
+          Want to be featured here? <a href="#contact" style="color:var(--cyan)">Book AIcyberX for your school →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     WHATSAPP COMMUNITY
+═══════════════════════════════════════════════════════════ -->
+  <section id="community" class="section whatsapp-section">
+    <div class="container">
+      <div class="whatsapp-card reveal">
+        <div>
+          <span
+            style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);border-radius:100px;font-size:12px;font-weight:700;color:#25d366;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px">
+            💬 WhatsApp Community
+          </span>
+          <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:12px">Join Our <span>Growing
+              Community</span></h2>
+          <p style="font-size:16px;color:var(--text-2);line-height:1.7;margin-bottom:28px;max-width:480px">
+            Get instant updates on workshops, events, hackathons, and resources. Connect with 500+ students passionate
+            about AI and cybersecurity.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-lg" style="background:#25d366;color:#000;font-weight:700"
+              data-open-modal="whatsapp-modal">
+              💬 Join WhatsApp Group
+            </button>
+            <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">
+              📸 Follow on Instagram
+            </a>
+          </div>
+        </div>
+
+        <!-- QR Code Placeholder -->
+        <div class="wa-qr-placeholder">
+          <span class="qr-icon">📱</span>
+          <span style="font-size:11px;font-weight:600;color:var(--text-muted)">WhatsApp QR Code</span>
+          <span style="font-size:10px;color:var(--text-dim)">Scan to Join</span>
+          <!-- Replace with actual QR code image: <img src="assets/images/whatsapp-qr.png" alt="WhatsApp QR" style="width:100%;height:100%;object-fit:contain;position:absolute;inset:0" /> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     BRING TO SCHOOL CTA
+═══════════════════════════════════════════════════════════ -->
+  <section id="contact" class="section cta-section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <span class="section-badge" style="margin-bottom:20px">🏫 For Schools & Institutions</span>
+        <h2 class="section-title" style="font-size:clamp(28px,4vw,52px);margin-bottom:16px">Bring <span>AIcyberX</span>
+          to Your School</h2>
+        <p style="font-size:18px;color:var(--text-2);max-width:600px;margin:0 auto 40px;line-height:1.7">
+          We conduct customized workshops and demo sessions for schools, colleges, and coaching institutes. Completely
+          free for students — just fill out the form below.
+        </p>
+
+        <!-- Contact Form -->
+        <div
+          style="max-width:700px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-2xl);padding:40px;text-align:left">
+          <form id="contact-form">
+            <div class="grid-2" style="margin-bottom:20px;gap:20px">
+              <div class="form-group">
+                <label class="form-label" for="c-name">Your Name *</label>
+                <input type="text" id="c-name" name="name" class="form-control" placeholder="Full name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-email">Email Address *</label>
+                <input type="email" id="c-email" name="email" class="form-control" placeholder="your@email.com"
+                  required />
+              </div>
+            </div>
+            <div class="grid-2" style="margin-bottom:20px;gap:20px">
+              <div class="form-group">
+                <label class="form-label" for="c-phone">Phone Number</label>
+                <input type="tel" id="c-phone" name="phone" class="form-control" placeholder="+91 00000 00000" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-school">School / Institution</label>
+                <input type="text" id="c-school" name="school" class="form-control"
+                  placeholder="School or college name" />
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:20px">
+              <label class="form-label" for="c-type">Inquiry Type</label>
+              <select id="c-type" name="type" class="form-control">
+                <option value="school">🏫 Book Workshop for School</option>
+                <option value="workshop">📅 Individual Workshop Registration</option>
+                <option value="general">💬 General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:28px">
+              <label class="form-label" for="c-message">Message *</label>
+              <textarea id="c-message" name="message" class="form-control"
+                placeholder="Tell us about your school, number of students, preferred dates, or any questions..."
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full btn-lg" id="contact-submit">
+              📨 Send Message
+            </button>
+          </form>
+        </div>
+
+        <div style="display:flex;justify-content:center;gap:32px;margin-top:40px;flex-wrap:wrap">
+          <a href="mailto:aiCyberX60@gmail.com"
+            style="color:var(--text-muted);font-size:14px;transition:var(--transition)"
+            onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">
+            📧 aiCyberX60@gmail.com
+          </a>
+          <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener"
+            style="color:var(--text-muted);font-size:14px;transition:var(--transition)"
+            onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--text-muted)'">
+            📸 @aicyberx60
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/logo.png" alt="AIcyberX" />
+            <span
+              style="font-family:var(--font-head);font-weight:800;font-size:20px;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AIcyberX</span>
+          </div>
+          <p class="footer-tagline">Artificial Intelligence & Cybersecurity eXperience. A student-driven initiative
+            making tech education accessible to all.</p>
+          <p style="font-size:12px;color:var(--cyan);font-weight:600;font-style:italic">Learn AI. Master Cyber. Lead
+            Tomorrow.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/aicyberx60" target="_blank" rel="noopener" class="social-btn"
+              title="Instagram">📸</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">💼</a>
+            <a href="mailto:aiCyberX60@gmail.com" class="social-btn" title="Email">📧</a>
+            <a href="#" class="social-btn" title="WhatsApp" data-open-modal="whatsapp-modal">💬</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About AIcyberX</a></li>
+            <li><a href="#services">What We Offer</a></li>
+            <li><a href="#demos">Live Demos</a></li>
+            <li><a href="workshops.html">Workshops</a></li>
+            <li><a href="#competition">Summer Challenge</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul class="footer-links">
+            <li><a href="login.html?tab=register">Join Free</a></li>
+            <li><a href="#community">WhatsApp Group</a></li>
+            <li><a href="https://instagram.com/aicyberx60" target="_blank">Instagram</a></li>
+            <li><a href="dashboard.html">Student Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>For Schools</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">Book a Workshop</a></li>
+            <li><a href="#contact">School Partnership</a></li>
+            <li><a href="mailto:aiCyberX60@gmail.com">Email Us</a></li>
+            <li><a href="#testimonials">Schools We Visited</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 AIcyberX. All rights reserved. Made with ❤️ by students, for students.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
      MODALS
 ═══════════════════════════════════════════════════════════ -->
 
-<!-- WhatsApp Join Modal -->
-<div class="modal-overlay" id="whatsapp-modal" role="dialog" aria-modal="true" aria-label="Join WhatsApp Community">
-  <div class="modal">
-    <button class="modal-close" data-close-modal="whatsapp-modal" aria-label="Close">✕</button>
-    <div style="text-align:center;margin-bottom:28px">
-      <div style="font-size:52px;margin-bottom:12px">💬</div>
-      <h3 style="font-size:22px;font-weight:800;margin-bottom:8px">Join Our WhatsApp Community</h3>
-      <p style="font-size:14px;color:var(--text-2)">Fill in your details and we'll add you to our community group for instant updates on workshops, events, and resources.</p>
+  <!-- WhatsApp Join Modal -->
+  <div class="modal-overlay" id="whatsapp-modal" role="dialog" aria-modal="true" aria-label="Join WhatsApp Community">
+    <div class="modal">
+      <button class="modal-close" data-close-modal="whatsapp-modal" aria-label="Close">✕</button>
+      <div style="text-align:center;margin-bottom:28px">
+        <div style="font-size:52px;margin-bottom:12px">💬</div>
+        <h3 style="font-size:22px;font-weight:800;margin-bottom:8px">Join Our WhatsApp Community</h3>
+        <p style="font-size:14px;color:var(--text-2)">Fill in your details and we'll add you to our community group for
+          instant updates on workshops, events, and resources.</p>
+      </div>
+      <form id="community-form" style="display:flex;flex-direction:column;gap:16px">
+        <div class="form-group">
+          <label class="form-label">Your Name *</label>
+          <input type="text" name="name" class="form-control" placeholder="Full name" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <input type="email" name="email" class="form-control" placeholder="email@example.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp Number</label>
+          <input type="tel" name="phone" class="form-control" placeholder="+91 00000 00000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input type="text" name="city" class="form-control" placeholder="Your city" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full btn-lg"
+          style="background:#25d366;box-shadow:0 0 20px rgba(37,211,102,0.3)">
+          Join Community 🚀
+        </button>
+        <p style="font-size:11px;color:var(--text-dim);text-align:center">By joining, you agree to receive updates from
+          AIcyberX. No spam, ever.</p>
+      </form>
     </div>
-    <form id="community-form" style="display:flex;flex-direction:column;gap:16px">
-      <div class="form-group">
-        <label class="form-label">Your Name *</label>
-        <input type="text" name="name" class="form-control" placeholder="Full name" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email Address *</label>
-        <input type="email" name="email" class="form-control" placeholder="email@example.com" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label">WhatsApp Number</label>
-        <input type="tel" name="phone" class="form-control" placeholder="+91 00000 00000" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">City</label>
-        <input type="text" name="city" class="form-control" placeholder="Your city" />
-      </div>
-      <button type="submit" class="btn btn-primary btn-full btn-lg" style="background:#25d366;box-shadow:0 0 20px rgba(37,211,102,0.3)">
-        Join Community 🚀
-      </button>
-      <p style="font-size:11px;color:var(--text-dim);text-align:center">By joining, you agree to receive updates from AIcyberX. No spam, ever.</p>
-    </form>
   </div>
-</div>
 
-<!-- Toast Container -->
-<div id="toast-container"></div>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
 
-<!-- Scripts -->
-<script src="js/api.js"></script>
-<script src="js/main.js"></script>
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>
