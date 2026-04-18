@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const { Workshop, Registration } = require('../database');
 const authMiddleware = require('../middleware/auth');
 
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     if (category && category !== 'all') filter.category = category;
     if (featured === 'true') filter.is_featured = true;
 
-    const workshops = await Workshop.find(filter).sort({ date: 1, createdAt: -1 });
+    const workshops = await Workshop.find(filter).sort({ date: 1, created_at: -1 });
     res.json(workshops);
   } catch (err) {
     console.error('Workshops fetch error:', err);
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 router.post('/:id/register', authMiddleware, async (req, res) => {
   try {
     const workshopId = req.params.id;
-    const studentId  = req.userId;
+    const studentId = req.userId;
 
     const workshop = await Workshop.findOne({ _id: workshopId, is_active: true });
     if (!workshop) return res.status(404).json({ error: 'Workshop not found.' });

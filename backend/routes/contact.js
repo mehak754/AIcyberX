@@ -114,7 +114,7 @@ router.post('/community', async (req, res) => {
       { upsert: true, new: true, setDefaultsOnInsert: true }
     );
 
-    res.json({ message: "You've been added to the AIcyberX community list! 🎉 Check your WhatsApp." });
+    res.json({ message: "You've been added to the AIcyberX community list! 🎉 Redirecting to WhatsApp..." });
   } catch (err) {
     console.error('Community join error:', err);
     res.status(500).json({ error: 'Failed to join. Please try again.' });
