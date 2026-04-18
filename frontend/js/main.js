@@ -313,11 +313,19 @@ function initCommunityForm() {
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Joining...';
 
-    try {
+    
+try {
       await ContactAPI.joinCommunity(data);
-      showToast('You\'re in! 🎉 Check your WhatsApp for the group link.', 'success', 6000);
-      closeModal('whatsapp-modal');
-      form.reset();
+      showToast('You\'re in! 🎉 Redirecting you to the WhatsApp group...', 'success', 5000);
+      
+      // WhatsApp Group Link provided by user
+      const whatsappLink = 'https://chat.whatsapp.com/FhFZqVEoRMVEAMC2DxeLMB';
+      
+      setTimeout(() => {
+        window.open(whatsappLink, '_blank');
+        closeModal('whatsapp-modal');
+        form.reset();
+      }, 1500);
     } catch (err) {
       showToast(err.message || 'Could not join. Try again.', 'error');
     } finally {
