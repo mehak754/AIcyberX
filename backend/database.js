@@ -3,15 +3,14 @@ require('dotenv').config();
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/aicyberx';
 
-// ─── Connection ────────────────────────────────────────────────────────────────
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected →', MONGO_URI.replace(/:([^:@]+)@/, ':<HIDDEN>@')))
+  .then(() => console.log(' MongoDB connected →', MONGO_URI.replace(/:([^:@]+)@/, ':<HIDDEN>@')))
   .catch(err => {
-    console.error('\n❌ MongoDB connection FAILED:', err.message);
-    console.error('👉 Fix: Go to https://cloud.mongodb.com → Database Access → Edit user → Reset password → Update .env MONGO_URI\n');
+    console.error('\nMongoDB connection FAILED:', err.message);
+    console.error(' Fix: Go to https://cloud.mongodb.com → Database Access → Edit user → Reset password → Update .env MONGO_URI\n');
   });
 
-// ─── JSON Transform (removes _id, exposes id as string) ───────────────────────
+
 const toJSONOpts = {
   virtuals: true,
   versionKey: false,
@@ -35,7 +34,7 @@ const studentSchema = new mongoose.Schema({
   toJSON: toJSONOpts,
 });
 
-// ─── Workshop Schema ───────────────────────────────────────────────────────────
+
 const workshopSchema = new mongoose.Schema({
   title:             { type: String, required: true },
   description:       { type: String, default: null },
@@ -55,7 +54,7 @@ const workshopSchema = new mongoose.Schema({
   toJSON: toJSONOpts,
 });
 
-// ─── Registration Schema ───────────────────────────────────────────────────────
+
 const registrationSchema = new mongoose.Schema({
   student_id:     { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true },
   workshop_id:    { type: mongoose.Schema.Types.ObjectId, ref: 'Workshop', required: true },
@@ -79,7 +78,7 @@ const contactMessageSchema = new mongoose.Schema({
   toJSON: toJSONOpts,
 });
 
-// ─── CommunityJoin Schema ──────────────────────────────────────────────────────
+
 const communityJoinSchema = new mongoose.Schema({
   name:  { type: String },
   email: { type: String },
@@ -90,14 +89,13 @@ const communityJoinSchema = new mongoose.Schema({
   toJSON: toJSONOpts,
 });
 
-// ─── Models ────────────────────────────────────────────────────────────────────
+
 const Student       = mongoose.model('Student', studentSchema);
 const Workshop      = mongoose.model('Workshop', workshopSchema);
 const Registration  = mongoose.model('Registration', registrationSchema);
 const ContactMessage = mongoose.model('ContactMessage', contactMessageSchema);
 const CommunityJoin = mongoose.model('CommunityJoin', communityJoinSchema);
 
-// ─── Seed Sample Workshops ─────────────────────────────────────────────────────
 async function seedWorkshops() {
   const count = await Workshop.countDocuments();
   if (count > 0) return;
@@ -140,7 +138,7 @@ async function seedWorkshops() {
       category: 'ai', tags: 'ai,voice,nlp,chatbot', seats_total: 45, is_featured: false,
     },
   ]);
-  console.log('✅ Sample workshops seeded');
+  console.log(' Sample workshops seeded');
 }
 
 // Run seed after connection is ready
