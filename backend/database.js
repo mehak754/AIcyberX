@@ -17,7 +17,6 @@ const toJSONOpts = {
   transform: (_, ret) => { delete ret._id; return ret; },
 };
 
-// ─── Student Schema ────────────────────────────────────────────────────────────
 const studentSchema = new mongoose.Schema({
   name:          { type: String, required: true },
   email:         { type: String, unique: true, required: true, lowercase: true, trim: true },
@@ -64,7 +63,7 @@ const registrationSchema = new mongoose.Schema({
 
 registrationSchema.index({ student_id: 1, workshop_id: 1 }, { unique: true });
 
-// ─── ContactMessage Schema ─────────────────────────────────────────────────────
+
 const contactMessageSchema = new mongoose.Schema({
   name:    { type: String },
   email:   { type: String },
