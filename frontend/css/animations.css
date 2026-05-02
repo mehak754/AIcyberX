@@ -1,8 +1,4 @@
-/* ============================================================
-   AIcyberX — Animations & Keyframes
-   ============================================================ */
 
-/* ─── Keyframes ───────────────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -116,7 +112,7 @@
   to   { stroke-dashoffset: 0; }
 }
 
-/* ─── Scroll Reveal ───────────────────────────────────────── */
+
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -154,22 +150,20 @@
 .reveal-group.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
 .reveal-group.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.55s; }
 
-/* ─── Hero Animations ─────────────────────────────────────── */
 .hero-badge    { animation: fadeIn 0.6s ease 0.2s both; }
 .hero-title    { animation: fadeInUp 0.8s ease 0.4s both; }
 .hero-subtitle { animation: fadeInUp 0.8s ease 0.6s both; }
 .hero-actions  { animation: fadeInUp 0.8s ease 0.8s both; }
 .hero-stats    { animation: fadeInUp 0.8s ease 1s both; }
 
-/* ─── Floating Elements ───────────────────────────────────── */
 .float-1 { animation: float 5s ease-in-out infinite; }
 .float-2 { animation: float 6s ease-in-out 1s infinite; }
 .float-3 { animation: float 7s ease-in-out 2s infinite; }
 
-/* ─── Glow Pulse ──────────────────────────────────────────── */
+
 .glow-pulse { animation: pulse-glow 3s ease-in-out infinite; }
 
-/* ─── Gradient Text Animation ─────────────────────────────── */
+
 .animated-gradient {
   background: linear-gradient(270deg, #00d4ff, #0077ff, #00d4ff, #00ff88, #00d4ff);
   background-size: 400% 400%;
@@ -179,7 +173,7 @@
   animation: gradient-shift 4s ease infinite;
 }
 
-/* ─── Cyber Scan Effect ───────────────────────────────────── */
+
 .scan-effect {
   position: relative;
   overflow: hidden;
@@ -195,13 +189,13 @@
   pointer-events: none;
 }
 
-/* ─── Glitch Effect ───────────────────────────────────────── */
+
 .glitch:hover { animation: glitch 0.3s ease; }
 
-/* ─── Counter Animation ───────────────────────────────────── */
+
 .counter { transition: all 0.1s; }
 
-/* ─── Particle Canvas ─────────────────────────────────────── */
+
 #particles-canvas {
   position: absolute;
   inset: 0;
@@ -240,7 +234,7 @@
 
 .demo-card:hover .demo-preview { transform: scale(1.05); }
 
-/* ─── Workshop Card Hover ─────────────────────────────────── */
+
 .workshop-card-img {
   width: 100%;
   height: 200px;
@@ -252,7 +246,7 @@
 
 .workshop-card:hover .workshop-card-img { transform: scale(1.04); }
 
-/* ─── Timeline ────────────────────────────────────────────── */
+
 .timeline {
   position: relative;
   padding-left: 32px;
@@ -281,7 +275,7 @@
   box-shadow: 0 0 10px var(--cyan);
 }
 
-/* ─── Neon Border Effect ──────────────────────────────────── */
+
 .neon-border {
   position: relative;
   border-radius: var(--r-xl);
@@ -301,7 +295,7 @@
   animation: cyber-border 4s ease infinite;
 }
 
-/* ─── Reduction for motion sensitive ─────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
