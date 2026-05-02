@@ -6,7 +6,7 @@ const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 5000;
 console.log("ENV PORT:", process.env.PORT);
-// Middleware
+
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5000', 'http://localhost:5500', 'http://127.0.0.1:5500'],
   credentials: true,
@@ -14,10 +14,10 @@ app.use(cors({
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Serve frontend
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Routes
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/workshops', require('./routes/workshops'));
@@ -34,7 +34,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// FIXED fallback
+
 app.use((req, res) => {
   if (!req.path.startsWith('/api')) {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
@@ -43,7 +43,7 @@ app.use((req, res) => {
   }
 });
 
-// Start
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
 });
